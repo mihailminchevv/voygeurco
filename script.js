@@ -307,23 +307,14 @@ Format using HTML: use <h2> for each day title, <h3> for time-of-day sections, <
 
 CRITICAL: You must complete every single day. Keep each day to 2–3 sentences per section maximum — do not over-explain. For ${planDays} days, budget your output carefully so you never run out of space before the final day.`;
 
-  async function generatePlan(prompt, planDays, planDiff, planInterests, monthName, year) {
-  const btn = document.getElementById('plan-generate-btn');
-  const loading = document.getElementById('plan-loading');
-  const result = document.getElementById('plan-result-body');
+try {
+   const RENDER_URL = "https://zuirhbackend.onrender.com";
 
-  btn.disabled = true;
-  loading.classList.add('visible');
-  hideError();
-
-  try {
-    const RENDER_URL = "https://zuirhbackend.onrender.com";
-
-    const response = await fetch(`${RENDER_URL}/api/ai`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt })
-    });
+const response = await fetch(`${RENDER_URL}/api/ai`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ prompt })
+});
 
     if (!response.ok) {
       if (response.status === 429) throw new Error('rate_limit');
@@ -331,16 +322,12 @@ CRITICAL: You must complete every single day. Keep each day to 2–3 sentences p
     }
 
     const data = await response.json();
-    const text = data.result || ''; // backend-a връща { result: "..." }
+    const text = data.content.map(c => c.text || '').join('');
 
-    // Показване на текста на страницата
     document.getElementById('plan-result-body').innerHTML = text;
-
-    // Показване на мета информация
     document.getElementById('plan-result-meta').textContent =
       `${planDays} ${planDays === 1 ? 'day' : 'days'} · ${planDiff.charAt(0).toUpperCase() + planDiff.slice(1)} pace · ${planInterests.size} interest${planInterests.size !== 1 ? 's' : ''} · ${monthName} ${year}`;
 
-    // Покажи резултата и скролни към него
     result.classList.add('visible');
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
