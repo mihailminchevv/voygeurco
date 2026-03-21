@@ -308,15 +308,13 @@ Format using HTML: use <h2> for each day title, <h3> for time-of-day sections, <
 CRITICAL: You must complete every single day. Keep each day to 2–3 sentences per section maximum — do not over-explain. For ${planDays} days, budget your output carefully so you never run out of space before the final day.`;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 8000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
+   const RENDER_URL = "https://zuirhbackend.onrender.com";
+
+const response = await fetch(`${RENDER_URL}/api/ai`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ prompt })
+});
 
     if (!response.ok) {
       if (response.status === 429) throw new Error('rate_limit');
