@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voyageur & Co — Discover Varna</title>
+  <title>Voyageur & Co — Discover Varna</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Voyageur & Co — Discover Varna</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -12,7 +13,6 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <!-- ── NAV ── -->
 <nav id="main-nav">
   <div class="nav-brand" onclick="navigate('home')">
@@ -34,6 +34,7 @@
 
 <!-- ══════════════════════════════════════════════════ HOME ══ -->
 <div id="page-home" class="page active">
+
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-pattern"></div>
@@ -65,7 +66,34 @@
       <div class="section-line"></div>
     </div>
     <div class="features-grid">
-      <!-- feature cards remain unchanged -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        </div>
+        <h3 class="feature-title">Interactive Map</h3>
+        <p class="feature-text">Navigate Varna's landmarks, restaurants, and hidden gems on a fully interactive map powered by OpenStreetMap.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3 class="feature-title">Curated Directory</h3>
+        <p class="feature-text">Browse a structured collection of tourist spots, cafés, restaurants, and local businesses — filterable by category.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3 class="feature-title">Travel Blog</h3>
+        <p class="feature-text">Insider tips, seasonal guides, and local recommendations written to help you make the most of your visit to Varna.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3 class="feature-title">Local Discovery</h3>
+        <p class="feature-text">From the Sea Garden to ancient Roman Baths — every corner of this Black Sea city, beautifully presented.</p>
+      </div>
     </div>
   </section>
 
@@ -76,54 +104,339 @@
       <div class="section-line"></div>
     </div>
     <div class="highlights-grid">
-      <!-- highlight cards remain unchanged -->
+      <div class="highlight-card" onclick="navigate('directory')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Varna_-_Cathedral_%281%29.jpg/800px-Varna_-_Cathedral_%281%29.jpg'); background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Tourist Place</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">Cathedral of the Assumption</h3>
+          <p class="highlight-desc">One of Bulgaria's largest cathedrals, consecrated in 1886. Its soaring neo-Byzantine domes and spectacular frescoes make it Varna's most iconic landmark.</p>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="navigate('directory')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Varna_sea_garden.jpg/1280px-Varna_sea_garden.jpg'); background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Tourist Place</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">The Sea Garden</h3>
+          <p class="highlight-desc">An 80-hectare coastal park along the Black Sea, home to the Dolphinarium, Summer Theatre, and miles of breathtaking clifftop walkways.</p>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="navigate('directory')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Roman_Thermae_-_Varna_-_panoramio.jpg/800px-Roman_Thermae_-_Varna_-_panoramio.jpg'); background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Tourist Place</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">Roman Thermae</h3>
+          <p class="highlight-desc">The largest ancient Roman baths on the Balkan Peninsula. Dating from the 2nd century AD, the ruins stand nearly 20 metres high and are unforgettable at dusk.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════ Updated Stats ── -->
-  <section class="home-stats" id="home-stats">
+  <section class="home-stats">
     <div class="stats-row">
       <div>
-        <div class="stat-num" id="stat-places">0</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Curated Places</div>
       </div>
       <div>
-        <div class="stat-num" id="stat-categories">0</div>
+        <div class="stat-num">2</div>
         <div class="stat-label">Categories</div>
       </div>
       <div>
-        <div class="stat-num" id="stat-blogs">5</div>
+        <div class="stat-num">5</div>
         <div class="stat-label">Blog Articles</div>
       </div>
       <div>
-        <div class="stat-num" id="stat-cities">1</div>
+        <div class="stat-num">1</div>
         <div class="stat-label">City Explored</div>
       </div>
     </div>
   </section>
+
 </div>
 
-<!-- DIRECTORY, MAP, BLOG, BLOG POST, AI PLANNER, FOOTER remain unchanged -->
+<!-- ══════════════════════════════════════════════ DIRECTORY ══ -->
+<div id="page-directory" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-label">Browse Locations</div>
+    <h1 class="page-hero-title">The Varna <em>Directory</em></h1>
+    <p class="page-hero-sub">Curated places across Varna — from historic landmarks to neighbourhood gems.</p>
+  </div>
+
+  <div class="dir-controls">
+    <div class="dir-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="dir-search-input" placeholder="Search places…" oninput="renderDirectory()">
+    </div>
+    <div class="filter-pills">
+      <div class="pill active" data-filter="all" onclick="setDirFilter('all')">All</div>
+      <div class="pill" data-filter="Tourist Place" onclick="setDirFilter('Tourist Place')">Tourist</div>
+      <div class="pill" data-filter="Local Business" onclick="setDirFilter('Local Business')">Local Business</div>
+    </div>
+  </div>
+
+  <div class="dir-content">
+    <div class="dir-grid" id="dir-grid"></div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════ MAP ══ -->
+<div id="page-map" class="page" style="padding-top: 64px;">
+  <div class="map-layout">
+    <aside class="map-sidebar">
+      <div class="map-sidebar-header">
+        <div class="map-sidebar-title">Varna Locations</div>
+        <div class="map-sidebar-sub" id="map-count">12 places available</div>
+        <div class="map-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="map-search-input" placeholder="Search…" oninput="filterMapPlaces()">
+        </div>
+      </div>
+      <div class="map-filter-row" id="map-filter-row">
+        <div class="map-pill active" data-filter="all" onclick="setMapFilter('all')">All</div>
+        <div class="map-pill" data-filter="Tourist Place" onclick="setMapFilter('Tourist Place')">Tourist</div>
+        <div class="map-pill" data-filter="Local Business" onclick="setMapFilter('Local Business')">Business</div>
+      </div>
+      <div class="map-places-list" id="map-places-list"></div>
+      <div class="map-info-bar">
+        <div class="map-info-name" id="map-selected-name">Select a location</div>
+        <div class="map-info-coords" id="map-selected-coords">—</div>
+      </div>
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot dot-tourist"></div>Tourist</div>
+        <div class="legend-item"><div class="legend-dot dot-business"></div>Business</div>
+      </div>
+    </aside>
+    <div id="map-container">
+      <div id="leaflet-map"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ BLOG ══ -->
+<div id="page-blog" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-label">Travel Stories</div>
+    <h1 class="page-hero-title">The Varna <em>Blog</em></h1>
+    <p class="page-hero-sub">Insider tips, seasonal guides, and stories from the Pearl of the Black Sea.</p>
+  </div>
+
+  <div class="blog-content">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════ BLOG POST ══ -->
+<div id="page-blog-post" class="page">
+  <div class="post-hero" id="post-hero-img">
+    <div class="post-hero-overlay"></div>
+    <div class="post-hero-content">
+      <button class="post-back-btn" onclick="navigate('blog')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Blog
+      </button>
+      <div class="post-tag-label" id="post-tag"></div>
+      <h1 class="post-title" id="post-title"></h1>
+      <div class="post-date" id="post-date"></div>
+    </div>
+  </div>
+  <div class="post-body-wrap">
+    <div class="post-body" id="post-body"></div>
+    <div class="post-footer">
+      <button class="post-back-btn-bottom" onclick="navigate('blog')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to all articles
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ AI PLANNER ══ -->
+<div id="page-plan" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-label">Powered by AI</div>
+    <h1 class="page-hero-title">Plan Your <em>Trip</em></h1>
+    <p class="page-hero-sub">Tell us when you're visiting and what you love — we'll build your personal Varna itinerary.</p>
+  </div>
+
+  <div class="plan-layout">
+
+    <div class="plan-error" id="plan-error"></div>
+
+    <div class="plan-form-card">
+      <div class="plan-form-header">
+        <div class="plan-form-icon">
+          <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div>
+          <div class="plan-form-title">AI Travel Planner</div>
+          <div class="plan-form-sub">Your personal itinerary for Varna, Bulgaria</div>
+        </div>
+      </div>
+
+      <div class="plan-form-body">
+
+        <!-- DAYS -->
+        <div class="plan-field">
+          <label class="plan-label">
+            Number of days
+            <span id="days-display">2 days</span>
+          </label>
+          <div class="days-slider-wrap">
+            <input type="range" class="days-slider" id="days-slider" min="1" max="7" value="2" step="1"
+              oninput="updateDays(this.value)">
+          </div>
+          <div class="days-ticks">
+            <span class="days-tick active" onclick="setDays(1)">1 day</span>
+            <span class="days-tick" onclick="setDays(2)">2 days</span>
+            <span class="days-tick" onclick="setDays(3)">3 days</span>
+            <span class="days-tick" onclick="setDays(4)">4 days</span>
+            <span class="days-tick" onclick="setDays(5)">5 days</span>
+            <span class="days-tick" onclick="setDays(6)">6 days</span>
+            <span class="days-tick" onclick="setDays(7)">7 days</span>
+          </div>
+        </div>
+
+        <!-- DIFFICULTY -->
+        <div class="plan-field">
+          <label class="plan-label">Trip pace</label>
+          <div class="diff-options">
+            <div class="diff-option" id="diff-relaxed" onclick="setDiff('relaxed')">
+              <div class="diff-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="diff-name">Relaxed</div>
+              <div class="diff-desc">2–3 places per day, plenty of rest</div>
+            </div>
+            <div class="diff-option selected" id="diff-moderate" onclick="setDiff('moderate')">
+              <div class="diff-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <div class="diff-name">Moderate</div>
+              <div class="diff-desc">4–5 places per day, balanced pace</div>
+            </div>
+            <div class="diff-option" id="diff-intensive" onclick="setDiff('intensive')">
+              <div class="diff-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="diff-name">Intensive</div>
+              <div class="diff-desc">6+ places per day, maximum coverage</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERESTS -->
+        <div class="plan-field">
+          <label class="plan-label">What would you like to do?</label>
+          <div class="interests-grid">
+            <div class="interest-option selected" id="int-history" onclick="toggleInterest('history')">
+              <span class="interest-emoji">🏛️</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Historical Sites</span>
+            </div>
+            <div class="interest-option selected" id="int-food" onclick="toggleInterest('food')">
+              <span class="interest-emoji">🍽️</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Local Food & Markets</span>
+            </div>
+            <div class="interest-option" id="int-culture" onclick="toggleInterest('culture')">
+              <span class="interest-emoji">🎭</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Cultural Events</span>
+            </div>
+            <div class="interest-option" id="int-romantic" onclick="toggleInterest('romantic')">
+              <span class="interest-emoji">🌹</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Romantic Spots</span>
+            </div>
+            <div class="interest-option" id="int-views" onclick="toggleInterest('views')">
+              <span class="interest-emoji">🌅</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Scenic Views</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="plan-generate-btn" id="plan-btn" onclick="generatePlan()">
+          <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          Build My Itinerary
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="plan-loading" id="plan-loading">
+      <div class="plan-loading-spinner"></div>
+      <div class="plan-loading-text">Crafting your personal Varna itinerary…</div>
+    </div>
+
+    <!-- Result -->
+    <div class="plan-result" id="plan-result">
+      <div class="plan-result-header">
+        <div>
+          <div class="plan-result-title">Your Varna Itinerary</div>
+          <div class="plan-result-meta" id="plan-result-meta"></div>
+        </div>
+        <span class="plan-result-badge">AI Generated</span>
+      </div>
+      <div class="plan-result-body" id="plan-result-body"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ FOOTER ══ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Voyageur<span>&amp;Co</span></div>
+      <p class="footer-brand-desc">A curated digital guide to Varna, Bulgaria — helping travelers discover the Pearl of the Black Sea.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a onclick="navigate('home')">Home</a></li>
+        <li><a onclick="navigate('directory')">Directory</a></li>
+        <li><a onclick="navigate('map')">Map</a></li>
+        <li><a onclick="navigate('blog')">Blog</a></li>
+        <li><a onclick="navigate('plan')">AI Planner</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Categories</div>
+      <ul class="footer-links">
+        <li><a onclick="navigate('directory'); setTimeout(()=>setDirFilter('Tourist Place'),100)">Tourist Places</a></li>
+        <li><a onclick="navigate('directory'); setTimeout(()=>setDirFilter('Local Business'),100)">Local Business</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a onclick="navigate('map')">Interactive Map</a></li>
+        <li><a onclick="navigate('blog')">Travel Blog</a></li>
+        <li><a onclick="navigate('plan')">Plan My Trip</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Voyageur  &amp; Co — Varna, Bulgaria</span>
+    <span class="footer-badge">Version 1.0</span>
+  </div>
+</footer>
 
 <script src="blog.js"></script>
 <script src="script.js"></script>
-
-<!-- ════════════════════════════ Update Home Stats ═══ -->
-<script>
-  function updateHomeStats() {
-    const attractions = window.attractions || [];
-    const categories = [...new Set(attractions.map(a => a.category))];
-
-    document.getElementById('stat-places').textContent = attractions.length;
-    document.getElementById('stat-categories').textContent = categories.length;
-    // блогове и град остават статични
-    document.getElementById('stat-blogs').textContent = 5;
-    document.getElementById('stat-cities').textContent = 1;
-  }
-
-  // извикваме функцията при зареждане
-  updateHomeStats();
-</script>
-
 </body>
 </html>
+
