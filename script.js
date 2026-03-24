@@ -1,127 +1,17 @@
-
 /* ── DATA ── */
 const attractions = [
-  {
-    id: 1,
-    name: "Cathedral of the Assumption",
-    category: "Tourist Place",
-    description: "One of Bulgaria's largest cathedrals, consecrated in 1886. Its soaring neo-Byzantine domes dominate the Varna skyline and the interior is covered in spectacular frescoes and golden iconostases.",
-    city: "Varna",
-    lat: 43.20525,
-    lng: 27.90997,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Varna_-_Cathedral_%281%29.jpg/800px-Varna_-_Cathedral_%281%29.jpg"
-  },
-  {
-    id: 2,
-    name: "Sea Garden",
-    category: "Tourist Place",
-    description: "An 80‑hectare coastal park along the Black Sea established in the 1880s. Home to the Dolphinarium, Summer Theatre, Naval Museum, and miles of beautiful seaside walkways.",
-    city: "Varna",
-    lat: 43.2108,
-    lng: 27.9333,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Varna_sea_garden.jpg/1280px-Varna_sea_garden.jpg"
-  },
-  {
-    id: 3,
-    name: "Archaeological Museum",
-    category: "Tourist Place",
-    description: "Houses the world's oldest processed gold treasure — the Varna Chalcolithic Necropolis collection, dating to 4600–4200 BC. An essential visit for anyone interested in ancient history.",
-    city: "Varna",
-    lat: 43.2045,
-    lng: 27.9090,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Varna_Archaeological_Museum.jpg/800px-Varna_Archaeological_Museum.jpg"
-  },
-  {
-    id: 4,
-    name: "Roman Thermae",
-    category: "Tourist Place",
-    description: "The largest ancient Roman baths on the Balkan Peninsula, built in the 2nd–3rd century AD. The ruins cover 7,000 sq metres and still stand nearly 20 metres high in places.",
-    city: "Varna",
-    lat: 43.2081,
-    lng: 27.9126,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Roman_Thermae_-_Varna_-_panoramio.jpg/800px-Roman_Thermae_-_Varna_-_panoramio.jpg"
-  },
-  {
-    id: 5,
-    name: "Euxinograd Palace",
-    category: "Tourist Place",
-    description: "A stunning Bulgarian royal residence set in a large park on the Black Sea coast, built in 1882. Famous for its French‑style gardens and award‑winning estate winery.",
-    city: "Varna",
-    lat: 43.2583,
-    lng: 27.9017,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Evksinograd_2.jpg/800px-Evksinograd_2.jpg"
-  },
-  {
-    id: 6,
-    name: "Varna Dolphinarium",
-    category: "Tourist Place",
-    description: "The oldest and largest dolphinarium in Bulgaria, open since 1984. Located in the Sea Garden, it hosts daily dolphin and seal performances in a spectacular Black Sea setting.",
-    city: "Varna",
-    lat: 43.2171,
-    lng: 27.9345,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Varna_Dolphinarium_exterior.jpg/800px-Varna_Dolphinarium_exterior.jpg"
-  },
-  {
-    id: 7,
-    name: "Varna Farmers Market",
-    category: "Local Business",
-    description: "A vibrant daily open‑air market in the heart of the city where local producers sell seasonal vegetables, artisan cheeses, honey, dried herbs, and traditional Bulgarian crafts.",
-    city: "Varna",
-    lat: 43.2097,
-    lng: 27.9174,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Varna_Central_Market.jpg/800px-Varna_Central_Market.jpg"
-  },
-  // Hidden Gems
-  {
-    id: 8,
-    name: "Aladzha Monastery",
-    category: "Hidden Gem",
-    description: "A medieval Orthodox cave monastery in the forest near Varna, with serene surroundings and historical significance.",
-    city: "Varna",
-    lat: 43.3031,
-    lng: 27.9303,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Aladzha_monastery.jpg/800px-Aladzha_monastery.jpg"
-  },
-  {
-    id: 9,
-    name: "Butterfly House Varna",
-    category: "Hidden Gem",
-    description: "A special museum with live butterflies in a beautiful garden. Quiet and colorful, perfect for families and photography.",
-    city: "Varna",
-    lat: 43.2100,
-    lng: 27.9360,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Butterfly_House_Varna.jpg/800px-Butterfly_House_Varna.jpg"
-  },
-  {
-    id: 10,
-    name: "Retro Museum Varna",
-    category: "Hidden Gem",
-    description: "A small museum showcasing retro cars, motorcycles, and 20th-century memorabilia. Off the standard tourist track.",
-    city: "Varna",
-    lat: 43.2060,
-    lng: 27.9105,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Retro_Museum_Varna.jpg/800px-Retro_Museum_Varna.jpg"
-  },
-  {
-    id: 11,
-    name: "Sea Casino Varna",
-    category: "Hidden Gem",
-    description: "Historic building in the Sea Garden hosting exhibitions, concerts, and cultural events. Offers a great view of the sea.",
-    city: "Varna",
-    lat: 43.2105,
-    lng: 27.9320,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Varna_Sea_Casino.jpg/800px-Varna_Sea_Casino.jpg"
-  },
-  {
-    id: 12,
-    name: "Asparuhov Park & Bridge",
-    category: "Hidden Gem",
-    description: "A scenic park and bridge offering panoramic views and peaceful walking trails, away from the main tourist crowds.",
-    city: "Varna",
-    lat: 43.1897,
-    lng: 27.9304,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Asparuhov_Bridge_Varna.jpg/800px-Asparuhov_Bridge_Varna.jpg"
-  }
+  { id: 1, name: "Cathedral of the Assumption", category: "Tourist Place", description: "One of Bulgaria's largest cathedrals, consecrated in 1886. Its soaring neo-Byzantine domes dominate the Varna skyline and the interior is covered in spectacular frescoes and golden iconostases.", city: "Varna", lat: 43.20525, lng: 27.90997, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Varna_-_Cathedral_%281%29.jpg/800px-Varna_-_Cathedral_%281%29.jpg" },
+  { id: 2, name: "Sea Garden", category: "Tourist Place", description: "An 80‑hectare coastal park along the Black Sea established in the 1880s. Home to the Dolphinarium, Summer Theatre, Naval Museum, and miles of beautiful seaside walkways.", city: "Varna", lat: 43.2108, lng: 27.9333, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Varna_sea_garden.jpg/1280px-Varna_sea_garden.jpg" },
+  { id: 3, name: "Archaeological Museum", category: "Tourist Place", description: "Houses the world's oldest processed gold treasure — the Varna Chalcolithic Necropolis collection, dating to 4600–4200 BC. An essential visit for anyone interested in ancient history.", city: "Varna", lat: 43.2045, lng: 27.9090, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Varna_Archaeological_Museum.jpg/800px-Varna_Archaeological_Museum.jpg" },
+  { id: 4, name: "Roman Thermae", category: "Tourist Place", description: "The largest ancient Roman baths on the Balkan Peninsula, built in the 2nd–3rd century AD. The ruins cover 7,000 sq metres and still stand nearly 20 metres high in places.", city: "Varna", lat: 43.2081, lng: 27.9126, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Roman_Thermae_-_Varna_-_panoramio.jpg/800px-Roman_Thermae_-_Varna_-_panoramio.jpg" },
+  { id: 5, name: "Euxinograd Palace", category: "Tourist Place", description: "A stunning Bulgarian royal residence set in a large park on the Black Sea coast, built in 1882. Famous for its French‑style gardens and award‑winning estate winery.", city: "Varna", lat: 43.2583, lng: 27.9017, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Evksinograd_2.jpg/800px-Evksinograd_2.jpg" },
+  { id: 6, name: "Varna Dolphinarium", category: "Tourist Place", description: "The oldest and largest dolphinarium in Bulgaria, open since 1984. Located in the Sea Garden, it hosts daily dolphin and seal performances in a spectacular Black Sea setting.", city: "Varna", lat: 43.2171, lng: 27.9345, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Varna_Dolphinarium_exterior.jpg/800px-Varna_Dolphinarium_exterior.jpg" },
+  { id: 7, name: "Varna Farmers Market", category: "Local Business", description: "A vibrant daily open‑air market in the heart of the city where local producers sell seasonal vegetables, artisan cheeses, honey, dried herbs, and traditional Bulgarian crafts.", city: "Varna", lat: 43.2097, lng: 27.9174, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Varna_Central_Market.jpg/800px-Varna_Central_Market.jpg" },
+  { id: 8, name: "Aladzha Monastery", category: "Hidden Gem", description: "A medieval Orthodox cave monastery in the forest near Varna, with serene surroundings and historical significance.", city: "Varna", lat: 43.3031, lng: 27.9303, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Aladzha_monastery.jpg/800px-Aladzha_monastery.jpg" },
+  { id: 9, name: "Butterfly House Varna", category: "Hidden Gem", description: "A special museum with live butterflies in a beautiful garden. Quiet and colorful, perfect for families and photography.", city: "Varna", lat: 43.2100, lng: 27.9360, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Butterfly_House_Varna.jpg/800px-Butterfly_House_Varna.jpg" },
+  { id: 10, name: "Retro Museum Varna", category: "Hidden Gem", description: "A small museum showcasing retro cars, motorcycles, and 20th-century memorabilia. Off the standard tourist track.", city: "Varna", lat: 43.2060, lng: 27.9105, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Retro_Museum_Varna.jpg/800px-Retro_Museum_Varna.jpg" },
+  { id: 11, name: "Sea Casino Varna", category: "Hidden Gem", description: "Historic building in the Sea Garden hosting exhibitions, concerts, and cultural events. Offers a great view of the sea.", city: "Varna", lat: 43.2105, lng: 27.9320, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Varna_Sea_Casino.jpg/800px-Varna_Sea_Casino.jpg" },
+  { id: 12, name: "Asparuhov Park & Bridge", category: "Hidden Gem", description: "A scenic park and bridge offering panoramic views and peaceful walking trails, away from the main tourist crowds.", city: "Varna", lat: 43.1897, lng: 27.9304, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Asparuhov_Bridge_Varna.jpg/800px-Asparuhov_Bridge_Varna.jpg" }
 ];
 
 /* ── STATE ── */
@@ -166,17 +56,17 @@ function setDirFilter(f) {
 
 function renderDirectory() {
   const q = (document.getElementById('dir-search-input').value || '').toLowerCase();
-  const filtered = places.filter(p => {
+  const filtered = attractions.filter(p => {
     const matchCat = dirFilter === 'all' || p.category === dirFilter;
     const matchQ = !q || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
   const grid = document.getElementById('dir-grid');
-  if (filtered.length === 0) {
+  if (!filtered.length) {
     grid.innerHTML = '<div class="dir-empty">No places found. Try a different search or filter.</div>';
     return;
   }
-  grid.innerHTML = filtered.map((p, i) => {
+  grid.innerHTML = filtered.map((p,i) => {
     const catClass = p.category === 'Tourist Place' ? 'cat-tourist' : p.category === 'Cafe' ? 'cat-cafe' : p.category === 'Restaurant' ? 'cat-restaurant' : 'cat-business';
     return `<div class="place-card" onclick="navigate('map'); setTimeout(() => selectPlace(${p.id}), 400)">
       <div class="place-card-img" style="background-image: url('${p.image}'), linear-gradient(135deg, #1a2f45 0%, #0d1b2a 100%)"></div>
@@ -215,7 +105,7 @@ function initMap() {
   setTimeout(() => {
     leafletMap = L.map('leaflet-map').setView([43.2141, 27.9212], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap', maxZoom: 19 }).addTo(leafletMap);
-    places.forEach(p => {
+    attractions.forEach(p => {
       const marker = L.marker([p.lat, p.lng], { icon: createMarkerIcon(p.category) })
         .addTo(leafletMap)
         .bindPopup(`<div class="custom-popup-name">${p.name}</div><div class="custom-popup-cat" style="color:${getMarkerColor(p.category)}">${p.category}</div><div class="custom-popup-desc">${p.description.substring(0,100)}…</div>`, { maxWidth: 240 })
@@ -234,7 +124,7 @@ function setMapFilter(f) {
 
 function filterMapPlaces() {
   const q = (document.getElementById('map-search-input').value || '').toLowerCase();
-  const filtered = places.filter(p => {
+  const filtered = attractions.filter(p => {
     const matchCat = mapFilter === 'all' || p.category === mapFilter;
     const matchQ = !q || p.name.toLowerCase().includes(q);
     return matchCat && matchQ;
@@ -249,7 +139,7 @@ function filterMapPlaces() {
 }
 
 function renderMapList(list) {
-  const data = list || places;
+  const data = list || attractions;
   const container = document.getElementById('map-places-list');
   container.innerHTML = data.map(p => {
     const dotClass = p.category === 'Tourist Place' ? 'dot-tourist' : p.category === 'Cafe' ? 'dot-cafe' : p.category === 'Restaurant' ? 'dot-restaurant' : 'dot-business';
@@ -261,7 +151,7 @@ function renderMapList(list) {
 }
 
 function selectPlace(id) {
-  const p = places.find(x => x.id === id);
+  const p = attractions.find(x => x.id === id);
   if (!p) return;
   selectedPlaceId = id;
   if (leafletMap) {
@@ -281,7 +171,7 @@ function highlightSidebarItem(id) {
   if (el) { el.classList.add('selected'); el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
 }
 
-/* ── AI PLANNER ── */
+/* ── AI PLANNER FUNCTIONS ── */
 function updateDays(val) {
   planDays = parseInt(val);
   const pct = ((val - 1) / 6 * 100).toFixed(1);
@@ -311,107 +201,6 @@ function toggleInterest(key) {
   } else {
     planInterests.add(key);
     el.classList.add('selected');
-  }
-}
-
-async function generatePlan() {
-  if (planInterests.size === 0) { showError('Please select at least one interest.'); return; }
-  hideError();
-
-  const btn = document.getElementById('plan-btn');
-  const loading = document.getElementById('plan-loading');
-  const result = document.getElementById('plan-result-body');
-  const meta = document.getElementById('plan-result-meta');
-
-  btn.disabled = true;
-  loading.classList.add('visible');
-  result.innerHTML = '';
-
-  const interestMap = {
-    history: 'Historical Sites (Cathedral of the Assumption, Roman Thermae, Archaeological Museum)',
-    food: 'Local food markets and traditional Bulgarian cuisine spots (Varna Farmers Market and local taverns)',
-    culture: 'Cultural Events & Venues (Sea Garden Summer Theatre, Dolphinarium, Varna Farmers Market)',
-    romantic: 'Romantic Spots (Euxinograd Palace & vineyard, Sea Garden sunset walk, Black Sea clifftop)',
-    views: 'Scenic Views (Sea Garden clifftop, Black Sea coast, Euxinograd gardens, Cathedral Square)'
-  };
-
-  const selectedInterests = [...planInterests].map(k => interestMap[k]).join('\n- ');
-  const diffText = planDiff === 'relaxed' ? 'Relaxed (2–3 places per day, lots of free time and rest)' :
-                   planDiff === 'moderate' ? 'Moderate (4–5 places per day, balanced pace)' :
-                   'Intensive (6+ places per day, maximum coverage)';
-
-  const placesContext = places.map(p => `- ${p.name} (${p.category}): ${p.description}`).join('\n');
-
-  const now = new Date();
-  const monthName = now.toLocaleString('en-US', { month: 'long' });
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-
-  const seasonInfo = month >= 6 && month <= 8
-    ? `SUMMER (${monthName}): Peak season. Hot weather (28–35°C), beaches fully open, outdoor concerts and festivals active. Prioritise early morning visits to beat heat and crowds.`
-    : month >= 9 && month <= 11
-    ? `AUTUMN (${monthName}): Shoulder season. Warm and pleasant (15–22°C), few tourists, sea still warm in September–October. Great for walking and cultural tourism.`
-    : month >= 12 || month <= 2
-    ? `WINTER (${monthName}): Off-season. Cold weather (2–8°C), very few tourists, many seasonal venues closed. Focus on indoor experiences: museums, the Cathedral, Roman Thermae.`
-    : `SPRING (${monthName}): Early season. Mild weather (10–18°C), low crowds, most attractions open. Good balance of indoor and outdoor activities.`;
-
-  const prompt = `You are an expert AI travel guide for Varna, Bulgaria. Respond only in English.
-
-IMPORTANT: All prices MUST be shown in Euros (€). Use current ${year} approximate prices.
-
-CURRENT SEASON CONTEXT — adapt all recommendations accordingly:
-${seasonInfo}
-
-Places available in our directory:
-${placesContext}
-
-The visitor wants a trip plan for Varna:
-- Number of days: ${planDays}
-- Pace: ${diffText}
-- Interests:
-- ${selectedInterests}
-
-Create a detailed day-by-day itinerary (Day 1, Day 2, etc.) using places from the directory and supplementing with additional Varna recommendations suited to the current season.
-
-For each day include: Morning, Lunch, Afternoon, and Evening sections. Include practical tips — transport, opening hours, approximate prices in Euros (€), and insider seasonal advice.
-
-Format using HTML: use <h2> for each day title, <h3> for time-of-day sections, <p> for descriptions, <ul><li> for tips. Write in a warm, inspiring, expert tone. Complete ALL ${planDays} days without cutting off.
-
-CRITICAL: Keep each day to 2–3 sentences per section. Budget your output carefully so you never run out of space before the final day.`;
-
-  try {
-    const RENDER_URL = "https://zuirhbackend.onrender.com";
-
-    const response = await fetch(`${RENDER_URL}/api/ai`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
-    });
-
-    if (!response.ok) {
-      if (response.status === 429) throw new Error('rate_limit');
-      throw new Error('api_error');
-    }
-
-    const data = await response.json();
-    const text = data.result || 'No response from AI.';
-
-    result.innerHTML = text;
-    meta.textContent = `${planDays} ${planDays === 1 ? 'day' : 'days'} · ${planDiff.charAt(0).toUpperCase() + planDiff.slice(1)} pace · ${planInterests.size} interest${planInterests.size !== 1 ? 's' : ''} · ${monthName} ${year}`;
-
-    document.getElementById('plan-result').classList.add('visible');
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  } catch (err) {
-    if (err.message === 'rate_limit') {
-      showError('Too many requests — please wait 15–20 seconds and try again.');
-    } else {
-      showError('Something went wrong while generating your plan. Please try again.');
-    }
-    console.error(err);
-  } finally {
-    btn.disabled = false;
-    loading.classList.remove('visible');
   }
 }
 
