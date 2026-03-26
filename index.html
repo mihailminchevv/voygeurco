@@ -193,7 +193,7 @@
     <aside class="map-sidebar">
       <div class="map-sidebar-header">
         <div class="map-sidebar-title">Varna Locations</div>
-        <div class="map-sidebar-sub" id="map-count">12 places available</div>
+        <div class="map-sidebar-sub" id="map-count">25 places available</div>
         <div class="map-search">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           <input type="text" id="map-search-input" placeholder="Search…" oninput="filterMapPlaces()">
@@ -203,6 +203,7 @@
         <div class="map-pill active" data-filter="all" onclick="setMapFilter('all')">All</div>
         <div class="map-pill" data-filter="Tourist Place" onclick="setMapFilter('Tourist Place')">Tourist</div>
         <div class="map-pill" data-filter="Local Business" onclick="setMapFilter('Local Business')">Business</div>
+         <div class="map-pill" data-filter="Hidden gems" onclick="setMapFilter('Hidden gems')">Hidden gems</div>
       </div>
       <div class="map-places-list" id="map-places-list"></div>
       <div class="map-info-bar">
