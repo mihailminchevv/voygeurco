@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://mihailminchevv.github.io/voygeurco/#home/sitemap.xml

@@ -1,0 +1,13 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "VoyageurCo",
+    "description": "",
+    "home_page_url": "https://mihailminchevv.github.io/voygeurco/#home",
+    "feed_url": "https://mihailminchevv.github.io/voygeurco/#home/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "Mikhail"
+    },
+    "items": [
+    ]
+}
