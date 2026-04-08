@@ -52,7 +52,6 @@ const attractions = [
   { id: 41, name: "German Museum of Technology (Aviation)", category: "Tech & Arts Museums", description: "The aerospace wing of the technology museum.", city: "Berlin", lat: 52.4988, lng: 13.3780, image: "https://wikimedia.org" },
   { id: 42, name: "Museum Island (Pergamon)", category: "Tech & Arts Museums", description: "Home to the Pergamon Altar and the Ishtar Gate.", city: "Berlin", lat: 52.5210, lng: 13.3965, image: "https://wikimedia.org" }
 ];
-
 /* ── STATE ── */
 let dirFilter = 'all';
 let mapFilter = 'all';
@@ -107,11 +106,7 @@ function renderExplore() {
 
   const filtered = attractions.filter(p => {
     const matchCat = dirFilter === 'all' || p.category === dirFilter;
-    const matchQ =
-      !q ||
-      p.name.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q);
-
+    const matchQ = !q || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
 
@@ -124,40 +119,34 @@ function renderExplore() {
 
   grid.innerHTML = filtered.map((p, i) => {
     const catClass = p.category.toLowerCase().replace(/[^a-z0-9]/g, '-');
-
-    const image =
-      p.image && p.image.startsWith('http')
-        ? p.image
-        : 'https://via.placeholder.com/800x600';
+    const image = p.image && p.image.startsWith('http') ? p.image : 'https://via.placeholder.com/800x600';
 
     return `
-    <div class="place-card" onclick="goToPlace(${p.id})">
-      <div class="place-card-img" style="background-image: url('${image}')"></div>
-
-      <div class="place-card-header">
-        <div>
-          <span class="place-card-cat ${catClass}">${p.category}</span>
-          <div class="place-card-name">${p.name}</div>
+      <div class="place-card" onclick="goToPlace(${p.id})">
+        <div class="place-card-img" style="background-image: url('${image}')"></div>
+        <div class="place-card-header">
+          <div>
+            <span class="place-card-cat ${catClass}">${p.category}</span>
+            <div class="place-card-name">${p.name}</div>
+          </div>
+          <span class="place-card-number">${String(i + 1).padStart(2, '0')}</span>
         </div>
-        <span class="place-card-number">${String(i + 1).padStart(2, '0')}</span>
-      </div>
-
-      <div class="place-card-body">
-        <p class="place-card-desc">${p.description}</p>
-        <div class="place-card-footer">${p.city}, Bulgaria</div>
-      </div>
-    </div>`;
+        <div class="place-card-body">
+          <p class="place-card-desc">${p.description}</p>
+          <div class="place-card-footer">${p.city}</div>
+        </div>
+      </div>`;
   }).join('');
 }
 
 /* ── MAP ── */
 function getMarkerColor(cat) {
   switch (cat) {
-    case 'Historical Spots': return '#c9a84c';
-    case 'Scenic Places': return '#5dcaa5';
-    case 'Romantic Places': return '#e07a55';
+    case 'Prussian Landmarks': return '#1A2F45';
+    case 'Berlin Wall Sites': return '#E8C000';
+    case 'Totalitarian Scars': return '#c9a84c';
     case 'Hidden Gems': return '#b0a8e8';
-    case 'Local Food & Drinks': return '#f4a261';
+    case 'Tech & Arts Museums': return '#5dcaa5';
     default: return '#999';
   }
 }
@@ -181,16 +170,14 @@ function initMap() {
   mapInitialized = true;
 
   setTimeout(() => {
-    leafletMap = L.map('leaflet-map').setView([43.2141, 27.9212], 13);
+    leafletMap = L.map('leaflet-map').setView([52.5200, 13.4050], 13); // Berlin
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap'
     }).addTo(leafletMap);
 
     attractions.forEach(p => {
-      const marker = L.marker([p.lat, p.lng], {
-        icon: createMarkerIcon(p.category)
-      })
+      const marker = L.marker([p.lat, p.lng], { icon: createMarkerIcon(p.category) })
         .addTo(leafletMap)
         .bindPopup(`<b>${p.name}</b><br>${p.category}`)
         .on('click', () => highlightSidebarItem(p.id));
@@ -210,17 +197,15 @@ function renderMapList(list) {
     const dotClass = p.category.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
     return `
-    <div class="map-place-item ${selectedPlaceId === p.id ? 'selected' : ''}"
-         id="map-item-${p.id}"
-         onclick="selectPlace(${p.id})">
-
-      <div class="map-place-dot ${dotClass}"></div>
-
-      <div>
-        <div>${p.name}</div>
-        <div>${p.category}</div>
-      </div>
-    </div>`;
+      <div class="map-place-item ${selectedPlaceId === p.id ? 'selected' : ''}"
+           id="map-item-${p.id}"
+           onclick="selectPlace(${p.id})">
+        <div class="map-place-dot ${dotClass}"></div>
+        <div>
+          <div>${p.name}</div>
+          <div>${p.category}</div>
+        </div>
+      </div>`;
   }).join('');
 }
 
@@ -240,9 +225,7 @@ function selectPlace(id) {
 }
 
 function highlightSidebarItem(id) {
-  document.querySelectorAll('.map-place-item')
-    .forEach(el => el.classList.remove('selected'));
-
+  document.querySelectorAll('.map-place-item').forEach(el => el.classList.remove('selected'));
   const el = document.getElementById('map-item-' + id);
   if (el) el.classList.add('selected');
 }
@@ -259,7 +242,7 @@ function generatePlan() {
   }
 
   const interestMap = {
-    history: ['Historical Spots'],
+    history: ['Prussian Landmarks', 'Berlin Wall Sites', 'Totalitarian Scars'],
     romantic: ['Romantic Places'],
     scenic: ['Scenic Places'],
     food: ['Local Food & Drinks'],
@@ -267,21 +250,15 @@ function generatePlan() {
   };
 
   let filtered = attractions.filter(p =>
-    [...planInterests].some(key =>
-      interestMap[key]?.includes(p.category)
-    )
+    [...planInterests].some(key => interestMap[key]?.includes(p.category))
   );
 
   filtered = filtered.sort(() => Math.random() - 0.5);
 
   const plan = Array.from({ length: planDays }, () => []);
-
-  filtered.forEach((place, i) => {
-    plan[i % planDays].push(place);
-  });
+  filtered.forEach((place, i) => plan[i % planDays].push(place));
 
   const container = document.getElementById('plan-results');
-
   container.innerHTML = plan.map((day, i) => `
     <div>
       <h3>Day ${i + 1}</h3>
