@@ -62,34 +62,49 @@ let mapInitialized = false;
 
 /* ── NAVIGATION ── */
 function navigate(page) {
-  // 1. Скрива абсолютно всички страници физически
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('active');
-    p.style.display = 'none'; // ДОБАВИ ТОВА
-  });
+  // 1. Намираме всички страници и ги деактивираме
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(p => p.classList.remove('active'));
 
-  // 2. Намира целевата страница
+  // 2. Намираме целевата страница
   const targetPage = document.getElementById('page-' + page);
   if (targetPage) {
     targetPage.classList.add('active');
-    targetPage.style.display = 'block'; // ДОБАВИ ТОВА
+  } else {
+    console.error("Page not found: page-" + page);
+    return;
   }
 
-  // Останалото ти е ок...
+  // 3. Управляваме активния линк в менюто
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const navLink = document.querySelector(`[data-page="${page}"]`);
   if (navLink) navLink.classList.add('active');
 
   window.scrollTo(0, 0);
 
-  // Важно: Провери дали тези функции съществуват и не гърмят с грешки!
-  if (page === 'explore') {
-      if (typeof renderExplore === "function") renderExplore();
+  // 4. Безопасно изпълнение на функциите
+  try {
+    if (page === 'explore' && typeof renderExplore === 'function') renderExplore();
+    if (page === 'map'     && typeof initMap      === 'function') initMap();
+    if (page === 'create') {
+      // Тук сложи логиката за съдържанието на Create Trip, ако е празна
+    }
+  } catch (e) {
+    console.error("Error loading page content:", e);
   }
-  
+
   window.location.hash = page;
 }
 
+// ✅ Зарежда правилната страница при директен URL с хаш
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    navigate(hash);
+  } else {
+    navigate('home');
+  }
+});
 /* ── EXPLORE ── */
 function setDirFilter(f) {
   dirFilter = f;
