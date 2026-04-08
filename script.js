@@ -121,14 +121,26 @@ function goToPlace(id) {
   setTimeout(() => selectPlace(id), 300);
 }
 
-function renderExplore() {
+/* ✅ ТУК ГО СЛАГАШ */
+function renderFilterPills() {
+  const categories = [...new Set(attractions.map(p => p.category))];
+  const container = document.querySelector('#page-explore .filter-pills');
+  if (!container) return;
 
+  container.innerHTML = `
+    <div class="pill active" data-filter="all" onclick="setDirFilter('all')">All</div>
+    ${categories.map(cat => `
+      <div class="pill" data-filter="${cat}" onclick="setDirFilter('${cat}')">${cat}</div>
+    `).join('')}
+  `;
+}
+
+/* 👇 Вече си го имаш */
+function renderExplore() {
   const inputEl = document.getElementById('dir-search-input');
   const q = (inputEl?.value || '').trim().toLowerCase();
 
-
   const filtered = attractions.filter(p => {
-    
     const matchCat = (typeof dirFilter === 'undefined' || dirFilter === 'all') || p.category === dirFilter;
     const matchQ = !q || 
                    p.name.toLowerCase().includes(q) || 
@@ -137,20 +149,15 @@ function renderExplore() {
   });
 
   const grid = document.getElementById('dir-grid');
-  if (!grid) return; // Защита, ако елементът липсва
-
+  if (!grid) return;
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="dir-empty">Мисията е невъзможна. Няма намерени локации.</div>`;
+    grid.innerHTML = `<div class="dir-empty">We couldn't find places. Please try again.</div>`;
     return;
   }
 
-
   grid.innerHTML = filtered.map((p, i) => {
-    // Правим класа на категорията безопасен за CSS (напр. "Cold War" -> "cold-war")
     const catClass = p.category ? p.category.toLowerCase().replace(/\s+/g, '-') : 'general';
-    
-
     const image = p.image || 'https://placeholder.com';
 
     return `
@@ -170,7 +177,6 @@ function renderExplore() {
       </div>`;
   }).join('');
 }
-
 
 /* ── MAP ── */
 function getMarkerColor(cat) {
