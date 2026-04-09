@@ -816,7 +816,9 @@
 }
   }
 
-  .map-place-item.selected .map-place-name { color: var(--gold-light); }
+  .map-place-item.selected .map-place-name { 
+  color: #E8AC52;
+}
 
   .map-place-cat {
     font-size: 0.7rem;
