@@ -108,23 +108,30 @@ window.addEventListener('DOMContentLoaded', () => {
 /* ── EXPLORE ── */
 
 function setDirFilter(f) {
-  // Актуализираме визуално бутоните (Pills)
-  document.querySelectorAll('#page-explore .pill').forEach(p => {
+
+  document.querySelectorAll('.filter-pills .pill').forEach(p => {
     p.classList.toggle('active', p.dataset.filter === f);
   });
 
 
-  const items = document.querySelectorAll('.dir-item'); 
-  items.forEach(item => {
-    if (f === 'all') {
-      item.style.display = 'block'; 
+
+  document.querySelectorAll('.dir-item').forEach(item => {
+    if (f === 'All') {
+      item.style.display = 'block'; // Показва всичко при клик на All
     } else {
-      item.style.display = item.dataset.category === f ? 'block' : 'none';
+      // Скрива или показва според категорията
+      item.style.display = (item.dataset.category === f) ? 'block' : 'none';
     }
   });
 }
 
-// 2. Активираме "All" автоматично при зареждане на страницата
+}
+document.addEventListener("DOMContentLoaded", () => {
+    setDirFilter('All'); 
+});
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const defaultFilter = 'all'; 
     setDirFilter(defaultFilter); // Използваме същото име на функцията!
