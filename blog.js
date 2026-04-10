@@ -9,7 +9,7 @@ const blogPosts = [
     content: `<p>Berlin is a city that refuses to be fully understood at first glance. While millions of visitors come each year to see the Brandenburg Gate and the Berlin Wall, the true identity of the city lies far beyond these iconic landmarks. Hidden Berlin is not a place—it is an experience built on discovery, curiosity, and the willingness to explore without a fixed plan.</p>
 
 <h3>Beyond the Tourist Map</h3>
-<p>If you're searching for secret places in Berlin, begin in neighborhoods like Kreuzberg and Neukölln. These districts represent the authentic soul of the city—raw, creative, and constantly evolving. Behind unmarked doors, you’ll find independent galleries, concept cafés, and creative spaces that rarely appear in any traditional Berlin travel guide.</p>
+<p>If you're searching for secret places in Berlin, begin in neighborhoods like Kreuzberg and Neukölln. These districts represent the authentic soul of the city—raw, creative, and constantly evolving. Behind unmarked doors, you'll find independent galleries, concept cafés, and creative spaces that rarely appear in any traditional Berlin travel guide.</p>
 
 <p>Courtyards hidden between residential buildings often open into entirely different worlds—quiet, artistic, and deeply local. These are the spaces where Berlin reveals its true character.</p>
 
@@ -18,12 +18,12 @@ const blogPosts = [
 
 <p>If you're looking for unique things to do in Berlin, the answer is simple: explore. The city rewards curiosity more than planning, offering moments that cannot be replicated or scheduled.</p>
 
-<p>Hidden Berlin is not something you visit—it’s something you uncover, piece by piece.</p>`
+<p>Hidden Berlin is not something you visit—it's something you uncover, piece by piece.</p>`
   },
   {
     id: 2,
     title: "The Perfect Berlin Itinerary: How to Spend a Day in Berlin",
-    date: "Аpril 6, 2026",
+    date: "April 6, 2026",
     tag: "Travel Guide",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Museum_Island_Berlin.jpg/1280px-Museum_Island_Berlin.jpg",
     excerpt: "Plan the perfect day in Berlin with this complete itinerary — from cultural landmarks to local experiences and unforgettable evenings.",
@@ -44,7 +44,7 @@ const blogPosts = [
 
 <p>Choose between a rooftop bar overlooking the skyline or a quiet dinner in a residential district. Either way, the experience feels intentional and immersive.</p>
 
-<p>A perfect day in Berlin is not about how much you see—it’s about how deeply you experience it.</p>`
+<p>A perfect day in Berlin is not about how much you see—it's about how deeply you experience it.</p>`
   },
   {
     id: 3,
@@ -61,12 +61,12 @@ const blogPosts = [
 <p>Each mural tells a story, blending history with modern interpretation.</p>
 
 <h3>The Creative Underground</h3>
-<p>Beyond well-known locations, Berlin’s creative energy thrives in hidden spaces. Abandoned buildings become galleries. Industrial spaces turn into performance venues. Art is everywhere, often appearing where you least expect it.</p>
+<p>Beyond well-known locations, Berlin's creative energy thrives in hidden spaces. Abandoned buildings become galleries. Industrial spaces turn into performance venues. Art is everywhere, often appearing where you least expect it.</p>
 
 <p>If you are interested in Berlin culture, the key is to explore without expectations. The city rewards openness and curiosity.</p>
 
 <h3>A Living Creative Ecosystem</h3>
-<p>Berlin’s artistic identity is constantly evolving. New artists arrive, new ideas emerge, and the city continuously reinvents itself.</p>
+<p>Berlin's artistic identity is constantly evolving. New artists arrive, new ideas emerge, and the city continuously reinvents itself.</p>
 
 <p>In Berlin, art is not something you observe—it is something you experience as part of everyday life.</p>`
   },
@@ -80,7 +80,7 @@ const blogPosts = [
     content: `<p>Berlin nightlife is not just famous—it is legendary. The city has built a global reputation for its unique approach to music, freedom, and self-expression.</p>
 
 <h3>The Club Culture</h3>
-<p>Clubs like Berghain are more than venues—they are cultural institutions. Known for their строг селекционен процес и атмосфера, те предлагат изживяване, което не може да се сравни с никое друго място в Европа.</p>
+<p>Clubs like Berghain are more than venues—they are cultural institutions. Known for their strict selection process and atmosphere, they offer an experience that cannot be compared to anywhere else in Europe.</p>
 
 <p>Music, architecture, and people merge into a single immersive environment.</p>
 
@@ -116,7 +116,7 @@ const blogPosts = [
 <p>Berlin is a place where unplanned moments often become the most memorable.</p>
 
 <h3>The Essence of Berlin</h3>
-<p>Ultimately, Berlin is defined by its contrasts—history and modernity, structure and свобода, intensity and calm.</p>
+<p>Ultimately, Berlin is defined by its contrasts—history and modernity, structure and freedom, intensity and calm.</p>
 
 <p>It is not a city you simply visit. It is a city you experience.</p>`
   },
@@ -124,7 +124,10 @@ const blogPosts = [
 
 /* ── BLOG ── */
 function renderBlog() {
-  document.getElementById('blog-grid').innerHTML = blogPosts.map(p => `
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+
+  grid.innerHTML = blogPosts.map(p => `
     <article class="blog-card" onclick="openBlogPost(${p.id})">
       <div class="blog-card-img" style="background-image: url('${p.image}'), linear-gradient(135deg, #1a2f45 0%, #0d1b2a 100%)">
         <span class="blog-img-tag">${p.tag}</span>
@@ -145,16 +148,18 @@ function openBlogPost(id) {
 
   document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  document.querySelector('[data-page="blog"]').classList.add('active');
 
-  const postPage = document.getElementById('page-blog-post');
-  postPage.classList.add('active');
+  const blogNavLink = document.querySelector('[data-page="blog"]');
+  if (blogNavLink) blogNavLink.classList.add('active');
+
   document.getElementById('page-blog').classList.remove('active');
+  document.getElementById('page-blog-post').classList.add('active');
 
   document.getElementById('post-hero-img').style.backgroundImage = `url('${p.image}'), linear-gradient(135deg, #1a2f45 0%, #0d1b2a 100%)`;
   document.getElementById('post-tag').textContent = p.tag;
   document.getElementById('post-date').textContent = p.date;
   document.getElementById('post-title').textContent = p.title;
   document.getElementById('post-body').innerHTML = p.content;
+
   window.scrollTo(0, 0);
 }
