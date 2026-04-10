@@ -321,50 +321,57 @@ function hideError() {
   el.classList.remove('visible');
 }
 
-function generatePlan() {
-  // ✅ Изчистваме стара грешка
+async function generatePlan() {
   hideError();
 
-  // ✅ showError вместо alert
   if (!planInterests.size) {
     showError("Please select at least one interest.");
     return;
   }
 
-  const interestMap = {
-    history:  ['Prussian Landmarks', 'Berlin Wall Sites', 'Totalitarian Scars'],
-    romantic: ['Romantic Places'],
-    scenic:   ['Scenic Places'],
-    food:     ['Local Food & Drinks'],
-    hidden:   ['Hidden Gems']
-  };
+  // Показваме loading
+  const loading = document.getElementById('plan-loading');
+  const result  = document.getElementById('plan-result');
+  const btn     = document.getElementById('plan-btn');
+  if (loading) loading.classList.add('visible');
+  if (result)  result.classList.remove('visible');
+  if (btn)     btn.disabled = true;
 
-  let filtered = attractions.filter(p =>
-    [...planInterests].some(key => interestMap[key]?.includes(p.category))
-  );
+  // Строим промпта
+  const interests = [...planInterests].join(', ');
+  const prompt = `You are a travel guide for Berlin, Germany.
+Create a detailed ${planDays}-day itinerary for a tourist with these interests: ${interests}.
+Trip pace: ${planDiff} (relaxed = 2-3 places/day, moderate = 4-5 places/day, intensive = 6+ places/day).
+Format the response with clear Day 1, Day 2 headings and bullet points for each place.
+Include the place name, a short description, and why it matches the tourist's interests.
+Write in English.`;
 
-  if (!filtered.length) {
-    showError("No places match your selected interests.");
-    return;
+  try {
+    const response = await fetch('https://zuirhbackend.onrender.com/api/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+      showError("AI error: " + data.error);
+      return;
+    }
+
+    // Показваме резултата
+    document.getElementById('plan-result-meta').textContent =
+      `${planDays} ${planDays === 1 ? 'day' : 'days'} · ${planDiff} pace · ${[...planInterests].join(', ')}`;
+    document.getElementById('plan-results').innerHTML =
+      data.result.replace(/\n/g, '<br>');
+    if (result) result.classList.add('visible');
+
+  } catch (err) {
+    showError("Could not connect to the server. Please try again.");
+    console.error(err);
+  } finally {
+    if (loading) loading.classList.remove('visible');
+    if (btn)     btn.disabled = false;
   }
-
-  filtered = filtered.sort(() => Math.random() - 0.5);
-
-  const plan = Array.from({ length: planDays }, () => []);
-  filtered.forEach((place, i) => plan[i % planDays].push(place));
-
-  const container = document.getElementById('plan-results');
-  if (!container) return;
-
-  container.innerHTML = plan.map((day, i) => `
-    <div class="plan-day">
-      <h3>Day ${i + 1}</h3>
-      <ul>
-        ${day.length
-          ? day.map(p => `<li>${p.name}</li>`).join('')
-          : '<li>No places scheduled for this day.</li>'
-        }
-      </ul>
-    </div>
-  `).join('');
 }
