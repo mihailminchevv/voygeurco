@@ -276,9 +276,58 @@ let planDays = 2;
 let planDiff = 'moderate';
 let planInterests = new Set();
 
+function updateDays(val) {
+  planDays = parseInt(val);
+  const pct = ((val - 1) / 6 * 100).toFixed(1);
+  const slider = document.getElementById('days-slider');
+  slider.style.setProperty('--pct', pct + '%');
+  document.getElementById('days-display').textContent = val == 1 ? '1 day' : val + ' days';
+  document.querySelectorAll('.days-tick').forEach((t, i) => t.classList.toggle('active', i + 1 == val));
+}
+
+function setDays(val) {
+  document.getElementById('days-slider').value = val;
+  updateDays(val);
+}
+
+function setDiff(d) {
+  planDiff = d;
+  ['relaxed', 'moderate', 'intensive'].forEach(opt => {
+    document.getElementById('diff-' + opt).classList.toggle('selected', opt === d);
+  });
+}
+
+function toggleInterest(key) {
+  const el = document.getElementById('int-' + key);
+  if (planInterests.has(key)) {
+    planInterests.delete(key);
+    el.classList.remove('selected');
+  } else {
+    planInterests.add(key);
+    el.classList.add('selected');
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('plan-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+function hideError() {
+  const el = document.getElementById('plan-error');
+  if (!el) return;
+  el.classList.remove('visible');
+}
+
 function generatePlan() {
+  // ✅ Изчистваме стара грешка
+  hideError();
+
+  // ✅ showError вместо alert
   if (!planInterests.size) {
-    alert("Select at least one interest");
+    showError("Please select at least one interest.");
     return;
   }
 
@@ -294,6 +343,11 @@ function generatePlan() {
     [...planInterests].some(key => interestMap[key]?.includes(p.category))
   );
 
+  if (!filtered.length) {
+    showError("No places match your selected interests.");
+    return;
+  }
+
   filtered = filtered.sort(() => Math.random() - 0.5);
 
   const plan = Array.from({ length: planDays }, () => []);
@@ -303,10 +357,13 @@ function generatePlan() {
   if (!container) return;
 
   container.innerHTML = plan.map((day, i) => `
-    <div>
+    <div class="plan-day">
       <h3>Day ${i + 1}</h3>
       <ul>
-        ${day.map(p => `<li>${p.name}</li>`).join('')}
+        ${day.length
+          ? day.map(p => `<li>${p.name}</li>`).join('')
+          : '<li>No places scheduled for this day.</li>'
+        }
       </ul>
     </div>
   `).join('');
