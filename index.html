@@ -24,7 +24,7 @@
   </div>
   <ul class="nav-links">
     <li><a onclick="navigate('home')" data-page="home">Home</a></li>
- <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter('explore '),100)">Explore </a></li>
+ <li><a onclick="navigate('explore'); data-page="explore">Explore </a></li>
    <li><a onclick="navigate('blog')" data-page="blog">Blog</a></li>
     <li><a onclick="navigate('map')" data-page="map">Map</a></li>
       <!-- <li><a onclick="navigate('create')" data-page="create"
@@ -163,7 +163,7 @@
 <div id="page-explore" class="page">
   <div class="page-hero">
     <div class="page-hero-label">Browse Locations</div>
-    <h1 class="page-hero-title">The Berlin <em> Explore<em>page</em></h1>
+    <h1 class="page-hero-title">The Berlin <em> Explore <em> page</em></h1>
     <p class="page-hero-sub">Curated places across Berlin — from historic landmarks to neighbourhood gems.</p>
   </div>
   <div class="dir-controls">
