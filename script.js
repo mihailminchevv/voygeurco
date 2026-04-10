@@ -347,7 +347,7 @@ Include the place name, a short description, and why it matches the tourist's in
 Write in English.`;
 
   try {
-    const response = await fetch('https://zuirhbackend.onrender.com/api/ai', {
+    const response = await fetch('https://zuirhbackend.onrender.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
