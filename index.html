@@ -196,30 +196,28 @@
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           <input type="text" id="map-search-input" placeholder="Search…" oninput="filterMapPlaces()">
         </div>
-      </div>
-      <div class="map-filter-row" id="map-filter-row">
+    <div class="map-filter-row" id="map-filter-row">
   <div class="map-pill active" data-filter="all" onclick="setMapFilter('all')">All</div>
+  <div class="map-pill" data-filter="Imperial Legacy & Grandeur" onclick="setMapFilter('Imperial Legacy & Grandeur')">Imperial Legacy & Grandeur</div>
+  <div class="map-pill" data-filter="Berlin Wall & Cold War Sites" onclick="setMapFilter('Berlin Wall & Cold War Sites')">Berlin Wall & Cold War Sites</div>
+  <div class="map-pill" data-filter="Hidden Gems & Secret Parks" onclick="setMapFilter('Hidden Gems & Secret Parks')">Hidden Gems & Secret Parks</div>
+  <div class="map-pill" data-filter="World-Class Museums" onclick="setMapFilter('World-Class Museums')">World-Class Museums</div>
+  <div class="map-pill" data-filter="Leisure & Classic Berlin" onclick="setMapFilter('Leisure & Classic Berlin')">Leisure & Classic Berlin</div>
+  <div class="map-pill" data-filter="Third Reich & Totalitarian Ruins" onclick="setMapFilter('Third Reich & Totalitarian Ruins')">Third Reich & Totalitarian Ruins</div>
 </div>
-      <div class= "map-pill active" Imperial Legacy & Grandeur" onclick="setDirFilter(' Imperial Legacy & Grandeur')"> Imperial Legacy & Grandeur</div>
-      <div class= "map-pill active" Berlin Wall & Cold War Sites" onclick="setDirFilter(' Berlin Wall & Cold War Sites')"> Berlin Wall & Cold War Sitess</div>
-      <div class = "map-pill active" Hidden Gems & Secret Parks" onclick="setDirFilter('Hidden Gems & Secret Parks')">Hidden Gems & Secret Parks</div>
-      <div class= "map-pill active" World-Class Museums " onclick="setDirFilter('World-Class Museums ')">World-Class Museums </div>
-       <div class= "map-pill active" Leisure & Classic Berlin " onclick="setDirFilter('Leisure & Classic Berlin')">Leisure & Classic Berlin </div>
-       <div class= "map-pill active" Third Reich & Totalitarian Ruins " onclick="setDirFilter('Third Reich & Totalitarian Ruins')">Third Reich & Totalitarian Ruins </div>
-      </div>
       <div class="map-places-list" id="map-places-list"></div>
       <div class="map-info-bar">
         <div class="map-info-name" id="map-selected-name">Select a location</div>
         <div class="map-info-coords" id="map-selected-coords">—</div>
       </div>
-      <div class="map-legend">
-        <div class="legend-item"><div class="legend-dot dot-Imperial Legacy & Grandeur"></div>Imperial Legacy & Grandeur</div>
-        <div class="legend-item"><div class="legend-dot dot-Berlin Wall & Cold War Sitess"></div>Berlin Wall & Cold War Sitess</div>
-         <div class="legend-item"><div class="legend-dot dot-Hidden Gems & Secret Parks"></div>Hidden Gems & Secret Parks</div>
-         <div class="legend-item"><div class="legend-dot dot-World-Class Museums"></div>World-Class Museums</div>
-         <div class="legend-item"><div class="legend-dot dot-Leisure & Classic Berlin"></div>Leisure & Classic Berlin</div>
-         <div class="legend-item"><div class="legend-dot dot-Third Reich & Totalitarian Ruins"></div>Third Reich & Totalitarian Ruins</div>
-      </div>
+    <div class="map-legend">
+  <div class="legend-item"><div class="legend-dot dot-imperial"></div>Imperial Legacy & Grandeur</div>
+  <div class="legend-item"><div class="legend-dot dot-coldwar"></div>Berlin Wall & Cold War Sites</div>
+  <div class="legend-item"><div class="legend-dot dot-hidden"></div>Hidden Gems & Secret Parks</div>
+  <div class="legend-item"><div class="legend-dot dot-museums"></div>World-Class Museums</div>
+  <div class="legend-item"><div class="legend-dot dot-leisure"></div>Leisure & Classic Berlin</div>
+  <div class="legend-item"><div class="legend-dot dot-ww2"></div>Third Reich & Totalitarian Ruins</div>
+</div>
     </aside>
     <div id="map-container">
       <div id="leaflet-map"></div>
