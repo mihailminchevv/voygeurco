@@ -224,41 +224,74 @@
     </div>
   </div>
 </div>
-  <!-- ════════════════════════════════════════════════ BLOG ══ -->
- <div id="page-blog" class="page">
+<!-- ════════════════════════════════════════════════ BLOG ══ -->
+<div id="page-blog" class="page">
+
+  <!-- HERO -->
   <div class="page-hero">
     <div class="page-hero-label">Travel Stories</div>
     <h1 class="page-hero-title">The Berlin <em>Blog</em></h1>
-    <p class="page-hero-sub">Insider tips, seasonal guides, and stories from history of one of most important cities.</p>
+    <p class="page-hero-sub">
+      Insider tips, seasonal guides, and stories from one of Europe’s most layered cities.
+    </p>
   </div>
+
+  <!-- BLOG CONTENT -->
   <div class="blog-content">
-    <div class="blog-grid" id="blog-grid"></div>
+
+    <!-- FEATURED ARTICLE -->
+    <div class="blog-featured" id="blog-featured">
+      <!-- JS will inject featured post here -->
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="blog-categories">
+      <button class="cat active" onclick="filterBlog('all')">All</button>
+      <button class="cat" onclick="filterBlog('Travel Guide')">Travel Guide</button>
+      <button class="cat" onclick="filterBlog('History')">History</button>
+      <button class="cat" onclick="filterBlog('Food')">Food</button>
+      <button class="cat" onclick="filterBlog('Hidden Gems')">Hidden Gems</button>
+    </div>
+
+    <!-- GRID POSTS -->
+    <div class="blog-grid" id="blog-grid">
+      <!-- JS will inject posts here -->
+    </div>
+
   </div>
 </div>
-<!-- ════════════════════════════════════════ BLOG POST ══ -->
+
+
+<!-- ════════════════════════════════════════ BLOG POST VIEW ══ -->
 <div id="page-blog-post" class="page">
+
+  <!-- HERO IMAGE -->
   <div class="post-hero" id="post-hero-img">
     <div class="post-hero-overlay"></div>
+
     <div class="post-hero-content">
       <button class="post-back-btn" onclick="navigate('blog')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        Back to Blog
+        ← Back to Blog
       </button>
+
       <div class="post-tag-label" id="post-tag"></div>
       <h1 class="post-title" id="post-title"></h1>
       <div class="post-date" id="post-date"></div>
     </div>
   </div>
+
+  <!-- CONTENT -->
   <div class="post-body-wrap">
     <div class="post-body" id="post-body"></div>
+
     <div class="post-footer">
       <button class="post-back-btn-bottom" onclick="navigate('blog')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        Back to all articles
+        ← Back to all articles
       </button>
     </div>
   </div>
-</div>  
+
+</div>
 <!-- ════════════════════════════════════════════Create my trip══ -->
 <div id="page-create" class="page">
  
