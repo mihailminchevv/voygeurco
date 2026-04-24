@@ -108,6 +108,7 @@ const cities = {
 };
 
 /* ── STATE ── */
+let dirFilter = "all";
 let currentCity = "berlin";
 let activeAttractions = cities.berlin.attractions;
 
