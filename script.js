@@ -1,16 +1,14 @@
 /* ─────────────────────────────
-   CITIES DATA ENGINE (5 cities)
+   CITIES SYSTEM (FIXED)
 ────────────────────────────── */
 
-const cities = ["Berlin", "Paris", "Rome", "London", "Barcelona"];
-
-let currentCity = "Berlin";
-
-const attractions= {
-
-/* ───────── BERLIN ───────── */
-Berlin: [
-  { id: 1, name: "Brandenburg Gate", category: "Landmarks", lat: 52.5163, lng: 13.3777 },
+/* ── CITIES DATA ── */
+const cities = {
+  berlin: {
+    name: "Berlin",
+    center: [52.5200, 13.4050],
+    zoom: 13,
+    attractions: [{ id: 1, name: "Brandenburg Gate", category: "Landmarks", lat: 52.5163, lng: 13.3777 },
   { id: 2, name: "Reichstag Dome", category: "Landmarks", lat: 52.5186, lng: 13.3761 },
   { id: 3, name: "Museum Island", category: "Culture", lat: 52.5169, lng: 13.3995 },
   { id: 4, name: "Checkpoint Charlie", category: "Cold War", lat: 52.5074, lng: 13.3904 },
@@ -53,130 +51,96 @@ Berlin: [
   { id: 38, name: "Teufelsberg", category: "Hidden", lat: 52.4986, lng: 13.2416 },
   { id: 39, name: "Olympic Village", category: "History", lat: 52.5140, lng: 13.2490 },
   { id: 40, name: "Berlin Dungeon", category: "Entertainment", lat: 52.5180, lng: 13.4020 }
-],
-
-
-/* ───────── PARIS ───────── */
-Paris: Array.from({ length: 40 }).map((_, i) => ({
-  id: i + 1,
-  name: "Paris Place " + (i + 1),
-  category: "Landmarks",
-  lat: 48.8566 + Math.random() * 0.05,
-  lng: 2.3522 + Math.random() * 0.05
-})),
-
-/* ───────── ROME ───────── */
-Rome: Array.from({ length: 40 }).map((_, i) => ({
-  id: i + 1,
-  name: "Rome Site " + (i + 1),
-  category: "History",
-  lat: 41.9028 + Math.random() * 0.05,
-  lng: 12.4964 + Math.random() * 0.05
-})),
-
-/* ───────── LONDON ───────── */
-London: Array.from({ length: 40 }).map((_, i) => ({
-  id: i + 1,
-  name: "London Spot " + (i + 1),
-  category: "Landmarks",
-  lat: 51.5074 + Math.random() * 0.05,
-  lng: -0.1278 + Math.random() * 0.05
-})),
-
-/* ───────── BARCELONA ───────── */
-Barcelona: Array.from({ length: 40 }).map((_, i) => ({
-  id: i + 1,
-  name: "Barcelona Place " + (i + 1),
-  category: "Architecture",
-  lat: 41.3851 + Math.random() * 0.05,
-  lng: 2.1734 + Math.random() * 0.05
-}))
-};
-
-
-/* ───────── HELPERS ───────── */
-
-function getAttractions() {
-  return data[currentCity];
-}
-
-function setCity(city) {
-  currentCity = city;
-  renderExplore();
-  renderMap();
-}
-
-/* ── STATE ── */
-let dirFilter = 'all';
-let mapFilter = 'all';
-let leafletMap = null;
-let mapMarkers = [];
-let selectedPlaceId = null;
-let mapInitialized = false;
-     
-   /* ── CITIES ── */
-const cities = {
-  berlin: {
-    name: "Berlin",
-    center: [52.5200, 13.4050],
-    zoom: 13,
-    attractions: attractions // твоят текущ масив
+]
   },
 
   paris: {
     name: "Paris",
     center: [48.8566, 2.3522],
     zoom: 13,
-    attractions: [] // ще добавиш после
+    attractions: Array.from({ length: 40 }).map((_, i) => ({
+      id: i + 1,
+      name: `Paris Place ${i + 1}`,
+      category: "Landmarks",
+      lat: 48.8566 + Math.random() * 0.05,
+      lng: 2.3522 + Math.random() * 0.05
+    }))
   },
 
   rome: {
     name: "Rome",
     center: [41.9028, 12.4964],
     zoom: 13,
-    attractions: []
+    attractions: Array.from({ length: 40 }).map((_, i) => ({
+      id: i + 1,
+      name: `Rome Site ${i + 1}`,
+      category: "History",
+      lat: 41.9028 + Math.random() * 0.05,
+      lng: 12.4964 + Math.random() * 0.05
+    }))
   },
 
   london: {
     name: "London",
     center: [51.5074, -0.1278],
     zoom: 13,
-    attractions: []
+    attractions: Array.from({ length: 40 }).map((_, i) => ({
+      id: i + 1,
+      name: `London Spot ${i + 1}`,
+      category: "Landmarks",
+      lat: 51.5074 + Math.random() * 0.05,
+      lng: -0.1278 + Math.random() * 0.05
+    }))
   },
 
   barcelona: {
     name: "Barcelona",
     center: [41.3851, 2.1734],
     zoom: 13,
-    attractions: []
+    attractions: Array.from({ length: 40 }).map((_, i) => ({
+      id: i + 1,
+      name: `Barcelona Place ${i + 1}`,
+      category: "Architecture",
+      lat: 41.3851 + Math.random() * 0.05,
+      lng: 2.1734 + Math.random() * 0.05
+    }))
   }
 };
 
+/* ── STATE ── */
 let currentCity = "berlin";
-     function switchCity(cityKey) {
+let activeAttractions = cities.berlin.attractions;
+
+/* ─────────────────────────────
+   CITY SWITCHER (HAMBURGER MENU)
+────────────────────────────── */
+
+function toggleCityMenu() {
+  document.getElementById("city-menu")?.classList.toggle("active");
+}
+
+function switchCity(cityKey) {
   if (!cities[cityKey]) return;
 
   currentCity = cityKey;
+  activeAttractions = cities[cityKey].attractions;
 
-  // сменяме dataset-а
-  window.activeAttractions = cities[cityKey].attractions;
-
-  // обновяваме explore
+  // update explore
   renderExplore();
 
-  // обновяваме map ако съществува
+  // update map
   if (leafletMap) {
     leafletMap.setView(
       cities[cityKey].center,
       cities[cityKey].zoom
     );
 
-    // махаме стари маркери
+    // remove old markers
     mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
     mapMarkers = [];
 
-    // добавяме нови
-    (window.activeAttractions || []).forEach(p => {
+    // add new markers
+    activeAttractions.forEach(p => {
       const marker = L.marker([p.lat, p.lng], {
         icon: createMarkerIcon(p.category)
       })
@@ -186,259 +150,95 @@ let currentCity = "berlin";
       mapMarkers.push({ id: p.id, marker, place: p });
     });
 
-    renderMapList(window.activeAttractions);
+    renderMapList(activeAttractions);
   }
 
-  console.log("Switched to:", cityKey);
-        /* ── CITY SWITCHER (HAMBURGER) ── */
+  // close menu
+  document.getElementById("city-menu")?.classList.remove("active");
 
-const cities = [
-  { name: "Berlin", center: [52.5200, 13.4050], zoom: 13 },
-  { name: "Paris", center: [48.8566, 2.3522], zoom: 13 },
-  { name: "Rome", center: [41.9028, 12.4964], zoom: 13 },
-  { name: "London", center: [51.5074, -0.1278], zoom: 13 },
-  { name: "Barcelona", center: [41.3851, 2.1734], zoom: 13 }
-];
-
-let currentCity = "Berlin";
-
-function toggleCityMenu() {
-  document.getElementById("city-menu").classList.toggle("active");
+  console.log("Switched city:", cityKey);
 }
 
-function switchCity(cityName) {
-  currentCity = cityName;
+/* ─────────────────────────────
+   HELPER
+────────────────────────────── */
 
-  const city = cities.find(c => c.name === cityName);
-  if (!city) return;
-
-  // update map
-  if (leafletMap) {
-    leafletMap.setView(city.center, city.zoom);
-  }
-
-  // optionally filter attractions
-  renderExplore();
-
-  document.getElementById("city-menu").classList.remove("active");
+function getActiveAttractions() {
+  return activeAttractions || [];
 }
 
-/* optional: helper for filtering by city */
-function getActiveCityAttractions() {
-  return attractions.filter(a => a.city === currentCity);
-}
-}
-
-/* ── About us  ── */
-function navigate(page) {
-  const pages = document.querySelectorAll(".page");
-
-  pages.forEach(p => p.classList.remove("active"));
-
-  document.getElementById("page-" + page).classList.add("active");
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-/* ── NAVIGATION ── */
-function navigate(page) {
-  // 1. Деактивираме всички страници
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-
-  // 2. Активираме целевата страница
-  const targetPage = document.getElementById('page-' + page);
-  if (targetPage) {
-    targetPage.classList.add('active');
-  } else {
-    console.error("Page not found: page-" + page);
-    return;
-  }
-
-  // 3. Управляваме активния nav линк
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  const navLink = document.querySelector(`[data-page="${page}"]`);
-  if (navLink) navLink.classList.add('active');
-
-  window.scrollTo(0, 0);
-
-  // 4. Безопасно изпълнение на функциите при навигация
-  try {
-    if (page === 'explore' && typeof renderExplore === 'function') renderExplore();
-    if (page === 'map'     && typeof initMap      === 'function') initMap();
-    // ✅ Добавено renderBlog
-    if (page === 'blog'    && typeof renderBlog   === 'function') renderBlog();
-  } catch (e) {
-    console.error("Error loading page content:", e);
-  }
-
-  window.location.hash = page;
-}
-
-/* ── ЕДИНСТВЕН DOMContentLoaded ── */
-window.addEventListener('DOMContentLoaded', () => {
-  // ✅ Премахнати дублираните listener-и — само един
-  renderFilterPills();
-  renderExplore();
-
-  const hash = window.location.hash.replace('#', '');
-  if (hash) {
-    navigate(hash);
-  } else {
-    navigate('home');
-  }
-});
-
-/* ── EXPLORE ── */
-function renderFilterPills() {
-  const categories = [...new Set(attractions.map(p => p.category))];
-  const container = document.querySelector('#page-explore .filter-pills');
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="pill active" data-filter="all" onclick="setDirFilter('all')">All</div>
-    ${categories.map(cat => `
-      <div class="pill" data-filter="${cat}" onclick="setDirFilter('${cat}')">${cat}</div>
-    `).join('')}
-  `;
-}
-
-function setDirFilter(f) {
-  // ✅ Обновяваме dirFilter променливата
-  dirFilter = f;
-
-  document.querySelectorAll('#page-explore .pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.filter === f);
-  });
-
-  renderExplore();
-}
-
-function goToPlace(id) {
-  navigate('map');
-  setTimeout(() => selectPlace(id), 300);
-}
+/* ─────────────────────────────
+   EXPLORE FIX (IMPORTANT)
+────────────────────────────── */
 
 function renderExplore() {
   const inputEl = document.getElementById('dir-search-input');
   const q = (inputEl?.value || '').trim().toLowerCase();
 
-  const data = window.activeAttractions || attractions;
+  const data = getActiveAttractions();
 
-const filtered = data.filter(p => {
+  const filtered = data.filter(p => {
     const matchCat = dirFilter === 'all' || p.category === dirFilter;
-    const matchQ   = !q ||
-                     p.name.toLowerCase().includes(q) ||
-                     (p.description && p.description.toLowerCase().includes(q));
+    const matchQ =
+      !q ||
+      p.name.toLowerCase().includes(q) ||
+      (p.description && p.description.toLowerCase().includes(q));
+
     return matchCat && matchQ;
   });
 
   const grid = document.getElementById('dir-grid');
   if (!grid) return;
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="dir-empty">We couldn't find places. Please try again.</div>`;
-    return;
-  }
-
-  grid.innerHTML = filtered.map((p, i) => {
-    const catClass = p.category ? p.category.toLowerCase().replace(/\s+/g, '-') : 'general';
-    const image    = p.image || 'https://placeholder.com';
-
-    return `
-      <div class="place-card" onclick="goToPlace('${p.id}')">
-        <div class="place-card-img" style="background-image: url('${image}')"></div>
-        <div class="place-card-header">
-          <div>
-            <span class="place-card-cat cat-${catClass}">${p.category}</span>
-            <div class="place-card-name">${p.name}</div>
-          </div>
-          <span class="place-card-number">${String(i + 1).padStart(2, '0')}</span>
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="place-card" onclick="goToPlace(${p.id})">
+      <div class="place-card-header">
+        <div>
+          <span class="place-card-cat">${p.category}</span>
+          <div class="place-card-name">${p.name}</div>
         </div>
-        <div class="place-card-body">
-          <p class="place-card-desc">${p.description || ''}</p>
-          <div class="place-card-footer">${p.city || 'Berlin'}</div>
-        </div>
-      </div>`;
-  }).join('');
+      </div>
+      <div class="place-card-body">
+        <div class="place-card-footer">${currentCity}</div>
+      </div>
+    </div>
+  `).join('');
 }
 
-/* ── MAP ── */
-function getMarkerColor(cat) {
-  switch (cat) {
-    case 'Prussian Landmarks':  return '#1A2F45';
-    case 'Berlin Wall Sites':   return '#E8C000';
-    case 'Totalitarian Scars':  return '#c9a84c';
-    case 'Hidden Gems':         return '#b0a8e8';
-    case 'Tech & Arts Museums': return '#5dcaa5';
-    default:                    return '#999';
-  }
-}
-
-function createMarkerIcon(cat) {
-  const color = getMarkerColor(cat);
-  return L.divIcon({
-    html: `<svg width="28" height="36" viewBox="0 0 28 36">
-      <path d="M14 0C6 0 0 6 0 14c0 10 14 22 14 22s14-12 14-22C28 6 22 0 14 0z" fill="${color}"/>
-      <circle cx="14" cy="14" r="5" fill="white"/>
-    </svg>`,
-    className: '',
-    iconSize: [28, 36],
-    iconAnchor: [14, 36]
-  });
-}
-
-function initMap() {
-  if (mapInitialized) return;
-  mapInitialized = true;
-
-  setTimeout(() => {
-    leafletMap = L.map('leaflet-map').setView([52.5200, 13.4050], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap'
-    }).addTo(leafletMap);
-
-    attractions.forEach(p => {
-      const marker = L.marker([p.lat, p.lng], { icon: createMarkerIcon(p.category) })
-        .addTo(leafletMap)
-        .bindPopup(`<b>${p.name}</b><br>${p.category}`)
-        .on('click', () => highlightSidebarItem(p.id));
-
-      mapMarkers.push({ id: p.id, marker, place: p });
-    });
-
-    renderMapList();
-  }, 200);
-}
+/* ─────────────────────────────
+   MAP FIX
+────────────────────────────── */
 
 function renderMapList(list) {
-const data = list || window.activeAttractions || attractions;
+  const data = list || getActiveAttractions();
   const container = document.getElementById('map-places-list');
   if (!container) return;
 
-  container.innerHTML = data.map(p => {
-    const dotClass = p.category.toLowerCase().replace(/[^a-z0-9]/g, '-');
-    return `
-      <div class="map-place-item ${selectedPlaceId === p.id ? 'selected' : ''}"
-           id="map-item-${p.id}"
-           onclick="selectPlace(${p.id})">
-        <div class="map-place-dot ${dotClass}"></div>
-        <div>
-          <div>${p.name}</div>
-          <div>${p.category}</div>
-        </div>
-      </div>`;
-  }).join('');
+  container.innerHTML = data.map(p => `
+    <div class="map-place-item"
+         id="map-item-${p.id}"
+         onclick="selectPlace(${p.id})">
+      <div>
+        <div>${p.name}</div>
+        <div>${p.category}</div>
+      </div>
+    </div>
+  `).join('');
 }
 
+/* ─────────────────────────────
+   NAV MAP SELECT FIX
+────────────────────────────── */
+
 function selectPlace(id) {
-  const p = attractions.find(x => x.id === id);
+  const p = activeAttractions.find(x => x.id === id);
   if (!p) return;
 
   selectedPlaceId = id;
 
   if (leafletMap) {
     leafletMap.setView([p.lat, p.lng], 16);
+
     const m = mapMarkers.find(x => x.id === id);
     if (m) m.marker.openPopup();
   }
@@ -446,134 +246,10 @@ function selectPlace(id) {
   highlightSidebarItem(id);
 }
 
-function highlightSidebarItem(id) {
-  document.querySelectorAll('.map-place-item').forEach(el => el.classList.remove('selected'));
-  const el = document.getElementById('map-item-' + id);
-  if (el) el.classList.add('selected');
-}
+/* ─────────────────────────────
+   INITIAL STATE
+────────────────────────────── */
 
-/* ── PLAN ── */
-let planDays = 2;
-let planDiff = 'moderate';
-let planInterests = new Set();
-
-function updateDays(val) {
-  planDays = parseInt(val);
-  const pct = ((val - 1) / 6 * 100).toFixed(1);
-  const slider = document.getElementById('days-slider');
-  slider.style.setProperty('--pct', pct + '%');
-  document.getElementById('days-display').textContent = val == 1 ? '1 day' : val + ' days';
-  document.querySelectorAll('.days-tick').forEach((t, i) => t.classList.toggle('active', i + 1 == val));
-}
-
-function setDays(val) {
-  document.getElementById('days-slider').value = val;
-  updateDays(val);
-}
-
-function setDiff(d) {
-  planDiff = d;
-  ['relaxed', 'moderate', 'intensive'].forEach(opt => {
-    document.getElementById('diff-' + opt).classList.toggle('selected', opt === d);
-  });
-}
-
-function toggleInterest(key) {
-  const el = document.getElementById('int-' + key);
-  if (planInterests.has(key)) {
-    planInterests.delete(key);
-    el.classList.remove('selected');
-  } else {
-    planInterests.add(key);
-    el.classList.add('selected');
-  }
-}
-
-function showError(msg) {
-  const el = document.getElementById('plan-error');
-  if (!el) return;
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-
-function hideError() {
-  const el = document.getElementById('plan-error');
-  if (!el) return;
-  el.classList.remove('visible');
-}
-
-async function generatePlan() {
-  hideError();
-
-  if (!planInterests.size) {
-    showError("Please select at least one interest.");
-    return;
-  }
-
-  const loading = document.getElementById('plan-loading');
-  const resultBox = document.getElementById('plan-result');
-  const btn = document.getElementById('plan-btn');
-
-  if (loading) loading.classList.add('visible');
-  if (resultBox) resultBox.classList.remove('visible');
-  if (btn) btn.disabled = true;
-
-  const interests = [...planInterests].join(', ');
-
-  const prompt = `
-You are a travel guide for Berlin, Germany.
-Create a ${planDays}-day itinerary.
-
-Interests: ${interests}
-Pace: ${planDiff}
-
-Format clearly with Day 1, Day 2 etc.
-Include short explanations for each place.
-Write in English.
-`;
-
-  try {
-    const response = await fetch('https://zuirhbackend.onrender.com/api/ai', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prompt })
-    });
-
-    const data = await response.json();
-
-    console.log("Frontend response:", data);
-
-    if (!response.ok) {
-      showError(data.error || "Server error");
-      return;
-    }
-
-    if (!data.result) {
-      showError("AI returned empty response");
-      return;
-    }
-
-    const output = document.getElementById('plan-results');
-
-    if (output) {
-      output.innerHTML = data.result.replace(/\n/g, '<br>');
-    }
-
-    const meta = document.getElementById('plan-result-meta');
-    if (meta) {
-      meta.textContent =
-        `${planDays} ${planDays === 1 ? 'day' : 'days'} · ${planDiff} pace · ${interests}`;
-    }
-
-    if (resultBox) resultBox.classList.add('visible');
-
-  } catch (err) {
-    console.error("Frontend error:", err);
-    showError("Could not connect to server");
-  } finally {
-    if (loading) loading.classList.remove('visible');
-    if (btn) btn.disabled = false;
-  }
-}
+window.addEventListener('DOMContentLoaded', () => {
+  activeAttractions = cities[currentCity].attractions;
+});
