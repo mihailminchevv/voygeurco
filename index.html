@@ -3,92 +3,429 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voyageur & Co</title>
-
-<link rel="stylesheet" href="style.css">
-
+<title>Voyageur & Co — Discover Berlin</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<!-- ───────── NAV ───────── -->
+<!-- ── NAV ── -->
 <nav id="main-nav">
-
   <div class="nav-brand" onclick="navigate('home')">
-    <span>VoyageurCo</span>
-  </div>
-
-  <ul class="nav-links">
-    <li><a onclick="navigate('home')">Home</a></li>
-    <li><a onclick="navigate('explore')">Explore</a></li>
-    <li><a onclick="navigate('map')">Map</a></li>
-    <li><a onclick="navigate('blog')">Blog</a></li>
-    <li><a onclick="navigate('create')">Create Trip</a></li>
-  </ul>
-
-  <!-- CITY SWITCHER -->
-  <div class="city-hamburger">
-    <button onclick="toggleCityMenu()">☰ Cities</button>
-
-    <div id="city-menu" class="city-menu">
-      <div onclick="switchCity('berlin')">Berlin</div>
-      <div onclick="switchCity('paris')">Paris</div>
-      <div onclick="switchCity('rome')">Rome</div>
-      <div onclick="switchCity('london')">London</div>
-      <div onclick="switchCity('barcelona')">Barcelona</div>
+    <div class="nav-brand-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
     </div>
+    <span class="nav-brand-text">Voyageur<span>Co</span></span>
   </div>
-
+  <ul class="nav-links">
+    <li><a onclick="navigate('home')" data-page="home">Home</a></li>
+    <div class="city-hamburger">
+  <button class="hamburger-btn" onclick="toggleCityMenu()">
+    ☰
+  </button>
+       <div id="city-menu" class="city-menu">
+    <div onclick="switchCity('berlin')">Berlin</div>
+    <div onclick="switchCity('paris')">Paris</div>
+    <div onclick="switchCity('rome')">Rome</div>
+    <div onclick="switchCity('london')">London</div>
+    <div onclick="switchCity('barcelona')">Barcelona</div>
+  </div>
+    <div class="city-menu">
+  <a href="cities/berlin.html">Berlin</a>
+  <a href="cities/paris.html">Paris</a>
+  <a href="cities/rome.html">Rome</a>
+  <a href="cities/london.html">London</a>
+  <a href="cities/barcelona.html">Barcelona</a>
+</div>
+<!--<li><a onclick="navigate('explore')" data-page="explore">Explore</a></li>
+   <li><a onclick="navigate('blog')" data-page="blog">Blog</a></li>
+    <li><a onclick="navigate('map')" data-page="map">Map</a></li>
+   <li><a onclick="navigate('create')" data-page="create"
+       style="color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 5px 14px; border-radius: 100px;">
+       Create my trip
+    </a>
+  </li>-->
+</ul>
 </nav>
 
-<!-- ───────── HOME ───────── -->
+<!-- ══════════════════════════════════════════════════ HOME ══ -->
 <div id="page-home" class="page active">
-
   <section class="hero">
-    <h1>Discover Europe</h1>
-    <p>AI-powered travel experience</p>
-
-    <div class="btn-group">
-      <button onclick="navigate('map')">Explore Map</button>
-      <button onclick="navigate('explore')">Explore Cities</button>
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Explore Europe</div>
+      <h1 class="hero-title">Discover<br><em>Europe</em></h1>
+      <p class="hero-subtitle">Europe: A mix of diffrent nationalities and history</p>
+      <p class="hero-description"> We offer carefully selected places in different cities in Europe, so you can explore Europe and see all of it's beauty. The thing that separate us from other tourist sites is our AI trip planner. You can select how long you want to stay in the city, how intense to be the trip and what kind of places to be included - historic places, senic places etc.
+      </p>
+  <div class="btn-group">
+        <button class="btn-primary" onclick="navigate('map')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          Explore the Map
+       </button>
+      <button class="btn-outline" onclick="navigate('explore')">Explore</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
-</div>
-
-<!-- ───────── EXPLORE ───────── -->
-<div id="page-explore" class="page">
-
-  <h2>Explore {{CITY}}</h2>
-
-  <input type="text" id="dir-search-input" placeholder="Search places..." oninput="renderExplore()">
-
-  <div id="dir-grid" class="grid"></div>
-
-</div>
-
-<!-- ───────── MAP ───────── -->
-<div id="page-map" class="page">
-
-  <div id="map-container">
-    <div id="leaflet-map"></div>
+  <section class="home-features">
+    <div class="section-header">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Your Guide to<br><em style="font-style:italic; color: var(--gold-light);">Europe</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        </div>
+        <h3 class="feature-title">Interactive Map</h3>
+        <p class="feature-text">Navigate Europe's landmarks, restaurants, and hidden gems on a fully interactive map powered by OpenStreetMap.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3 class="feature-title">Curated Directory</h3>
+        <p class="feature-text">Browse a structured collection of tourist spots, historic places and the best places for photo  — filterable by category.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3 class="feature-title">Travel Blog</h3>
+        <p class="feature-text">Insider tips, seasonal guides, and local recommendations written to help you make the most of your visit Europe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3 class="feature-title">Local Discovery</h3>
+        <p class="feature-text">From Rome's ancient history to the quiet remains of the Berlin wall— decoding the layers of history and power in Europe’s most iconic places.</p>
+      </div>
+    </div>
+  </section>
+ <section class="home-highlights">
+    <div class="section-header">
+      <span class="section-label" style="color: var(--navy);">Featured Places</span>
+      <h2 class="section-title section-title-dark">Must-See in Europe</h2>
+      <div class="section-line"></div>
+    </div>  
+    <div class="highlights-grid">
+      <div class="highlight-card" onclick="navigate('explore')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner"  style="background-image: background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Strategic Legacy</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">The Reichstag</h3>
+          <p class="highlight-desc">The seat of the German Parliament. An architectural masterpiece of stone and glass, representing the turbulent evolution of European power and democratic resilience.</p>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="navigate('explore')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner"  style="background-image: background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">English Legacy</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">Big Ben</h3>
+          <p class="highlight-desc">The Great Bell was cast in 1858 and named after Sir Benjamin Hall, becoming a worldwide symbol of British resilience and precision.</p>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="navigate('explore')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner" style="background-image: background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Prussian Grandeur</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">The Louvre</h3>
+          <p class="highlight-desc">Originally built as a fortress in the 12th century, the Louvre evolved into a royal palace before transforming into the world’s largest and most visited art museum during the French Revolution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--  <section class="home-stats">
+    <div class="stats-row">
+      <div>
+        <div class="stat-num">42</div>
+        <div class="stat-label">Curated Places</div>
+      </div>
+      <div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div>
+       <div class="stat-num">5</div>
+        <div class="stat-label">Blog Articles</div>
+      </div>
+      <div>
+        <div class="stat-num">1</div>
+        <div class="stat-label">City Explored</div>
+      </div>
+    </div>
+  </section>
+</div>-->
+  <!-- ══════════════════════════════════════════════ ABOUT US ══ -->
+  <!--<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="page-hero-label">Who We Are</div>
+    <h1 class="page-hero-title">About <em>Voyageur & Co</em></h1>
+    <p class="page-hero-sub">A new generation travel platform powered by AI and curated experiences.</p>
   </div>
 
-  <div id="map-places-list"></div>
+  <div class="about-content" style="max-width: 900px; margin: 0 auto; padding: 60px 20px; color: white;">
+    
+    <h2 style="margin-bottom: 20px;">Our Mission</h2>
+    <p style="opacity: 0.8; line-height: 1.7;">
+      We build intelligent travel experiences that help people discover cities in a deeper way — not just tourist spots, but stories, history and hidden places.
+    </p>
 
+    <h2 style="margin-top: 40px; margin-bottom: 20px;">What Makes Us Different</h2>
+    <ul style="opacity: 0.8; line-height: 1.8;">
+      <li>AI-powered travel planning</li>
+      <li>Multi-city exploration system</li>
+      <li>Curated hidden gems instead of generic tourism lists</li>
+      <li>Interactive maps and storytelling</li>
+    </ul>
+
+    <h2 style="margin-top: 40px; margin-bottom: 20px;">Vision</h2>
+    <p style="opacity: 0.8; line-height: 1.7;">
+      To become the first AI-native travel platform where every city is experienced uniquely for each user.
+    </p>
+
+  </div>
+</div>-->
+
+<!-- ══════════════════════════════════════════════ Еxplore ══ -->
+<!--<div id="page-explore" class="page">
+  <div class="page-hero">
+    <div class="page-hero-label">Browse Locations</div>
+    <h1 class="page-hero-title">The Berlin <em> Explore <em> page</em></h1>
+    <p class="page-hero-sub">Curated places across Berlin — from historic landmarks to neighbourhood gems.</p>
+  </div>
+  <div class="dir-controls">
+    <div class="dir-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="dir-search-input" placeholder="Search places…" oninput="renderDirectory()">
+    </div>
+    <div class="filter-pills">
+      <div class="pill active" data-filter="All" onclick="setDirFilter('All')">All</div>
+      <div class="pill" data-filter="Prussian & Imperial Landmarks" onclick="setDirFilter('Prussian & Imperial Landmarks')">Prussian & Imperial Landmarkst</div>
+      <div class="pill" data-filter="Berlin Wall & Cold War Sites" onclick="setDirFilter(' Berlin Wall & Cold War Sites')"> Berlin Wall & Cold War Sites</div>
+      <div class="pill" data-filter="Third Reich & Totalitarian Ruins" onclick="setDirFilter('Third Reich & Totalitarian Ruins')">Third Reich & Totalitarian Ruins</div>
+  <div class="pill" data-filter="Hidden Gems & Secret Parks" onclick="setDirFilter('Hidden Gems & Secret Parks')">Hidden Gems & Secret Parks</div>
+  <div class="pill" data-filter="World-Class Museums" onclick="setDirFilter('World-Class Museums')">World-Class Museums</div>
+  <div class="pill" data-filter="Leisure & Classic Berlin" onclick="setDirFilter('Leisure & Classic Berlin')">Leisure & Classic Berlin</div>
+    </div>
+  </div>
+  <div class="dir-content">
+    <div class="dir-grid" id="dir-grid"></div>
+  </div>
+</div>-->
+<!-- ══════════════════════════════════════════════════ MAP ══ -->
+<!--<div id="page-map" class="page" style="padding-top: 64px;">
+  <div class="map-layout">
+    <aside class="map-sidebar">
+      <div class="map-sidebar-header">
+        <div class="map-sidebar-title">Berlin Locations</div>
+        <div class="map-sidebar-sub" id="map-count">42 places available</div>
+        <div class="map-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="map-search-input" placeholder="Search…" oninput="filterMapPlaces()">
+        </div>
+    <div class="map-filter-row" id="map-filter-row">
+ <div class="map-pill active" data-filter="all" onclick="setMapFilter('all')">All</div>
+  <div class="map-pill" data-filter="Imperial Legacy & Grandeur" onclick="setMapFilter('Imperial Legacy & Grandeur')">Imperial Legacy & Grandeur</div>
+  <div class="map-pill" data-filter="Berlin Wall & Cold War Sites" onclick="setMapFilter('Berlin Wall & Cold War Sites')">Berlin Wall & Cold War Sites</div>
+  <div class="map-pill" data-filter="Hidden Gems & Secret Parks" onclick="setMapFilter('Hidden Gems & Secret Parks')">Hidden Gems & Secret Parks</div>
+  <div class="map-pill" data-filter="World-Class Museums" onclick="setMapFilter('World-Class Museums')">World-Class Museums</div>
+  <div class="map-pill" data-filter="Leisure & Classic Berlin" onclick="setMapFilter('Leisure & Classic Berlin')">Leisure & Classic Berlin</div>
+  <div class="map-pill" data-filter="Third Reich & Totalitarian Ruins" onclick="setMapFilter('Third Reich & Totalitarian Ruins')">Third Reich & Totalitarian Ruins</div>
+</div> 
+      <div class="map-places-list" id="map-places-list"></div>
+      <div class="map-info-bar">
+        <div class="map-info-name" id="map-selected-name">Select a location</div>
+        <div class="map-info-coords" id="map-selected-coords">—</div>
+      </div>
+    <div class="map-legend">
+  <div class="legend-item"><div class="legend-dot dot-imperial"></div>Imperial Legacy & Grandeur</div>
+  <div class="legend-item"><div class="legend-dot dot-coldwar"></div>Berlin Wall & Cold War Sites</div>
+  <div class="legend-item"><div class="legend-dot dot-hidden"></div>Hidden Gems & Secret Parks</div>
+  <div class="legend-item"><div class="legend-dot dot-museums"></div>World-Class Museums</div>
+  <div class="legend-item"><div class="legend-dot dot-leisure"></div>Leisure & Classic Berlin</div>
+  <div class="legend-item"><div class="legend-dot dot-ww2"></div>Third Reich & Totalitarian Ruins</div>
 </div>
-
-<!-- ───────── BLOG ───────── -->
-<div id="page-blog" class="page">
-  <h2>Blog</h2>
-</div>
-
-<!-- ───────── CREATE TRIP ───────── -->
+    </aside>
+    <div id="map-container">
+      <div id="leaflet-map"></div>
+    </div>
+  </div>
+</div>-->
+  <!-- ════════════════════════════════════════════════ BLOG ══ -->
+<!-- <div id="page-blog" class="page">
+  <div class="page-hero">
+    <div class="page-hero-label">Travel Stories</div>
+    <h1 class="page-hero-title">The Berlin <em>Blog</em></h1>
+    <p class="page-hero-sub">Insider tips, seasonal guides, and stories from history of one of most important cities.</p>
+  </div>
+  <div class="blog-content">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+</div>-->
+<!-- ════════════════════════════════════════ BLOG POST ══ -->
+<!--<div id="page-blog-post" class="page">
+  <div class="post-hero" id="post-hero-img">
+    <div class="post-hero-overlay"></div>
+    <div class="post-hero-content">
+      <button class="post-back-btn" onclick="navigate('blog')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Blog
+      </button>
+      <div class="post-tag-label" id="post-tag"></div>
+      <h1 class="post-title" id="post-title"></h1>
+      <div class="post-date" id="post-date"></div>
+    </div>
+  </div>
+  <div class="post-body-wrap">
+    <div class="post-body" id="post-body"></div>
+    <div class="post-footer">
+      <button class="post-back-btn-bottom" onclick="navigate('blog')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to all articles
+      </button>
+    </div>
+  </div>
+</div>  -->
+<!-- ════════════════════════════════════════════Create my trip══ -->
+<!--<div id="page-create" class="page">
+ 
+  <div class="page-hero">
+    <div class="page-hero-label">Powered by AI</div>
+    <h1 class="page-hero-title">Plan Your <em>Trip</em></h1>
+    <p class="page-hero-sub">Tell us when you're visiting and what you love — we'll build your personal Berlin trip.</p>
+  </div>
+  <div class="plan-layout">
+    <div class="plan-error" id="plan-error"></div>
+    <div class="plan-form-card">
+      <div class="plan-form-header">
+        <div class="plan-form-icon">
+          <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div>
+          <div class="plan-form-title">AI Travel Planner</div>
+          <div class="plan-form-sub">Your personal itinerary for Berlin, Germany</div>
+        </div>
+      </div>
+      <div class="plan-form-body">
+        <div class="plan-field">
+          <label class="plan-label">
+            Number of days
+            <span id="days-display">2 days</span>
+          </label>
+          <div class="days-slider-wrap">
+            <input type="range" class="days-slider" id="days-slider" min="1" max="7" value="2" step="1"
+              oninput="updateDays(this.value)">
+          </div>
+          <div class="days-ticks">
+            <span class="days-tick"        onclick="setDays(1)">1 day</span>
+            <span class="days-tick active" onclick="setDays(2)">2 days</span>
+            <span class="days-tick"        onclick="setDays(3)">3 days</span>
+            <span class="days-tick"        onclick="setDays(4)">4 days</span>
+            <span class="days-tick"        onclick="setDays(5)">5 days</span>
+            <span class="days-tick"        onclick="setDays(6)">6 days</span>
+            <span class="days-tick"        onclick="setDays(7)">7 days</span>
+          </div>
+        </div>
+        <div class="plan-field">
+          <label class="plan-label">Trip pace</label>
+          <div class="diff-options">
+            <div class="diff-option" id="diff-relaxed" onclick="setDiff('relaxed')">
+              <div class="diff-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="diff-name">Relaxed</div>
+              <div class="diff-desc">2–3 places per day, plenty of rest</div>
+            </div>
+            <div class="diff-option selected" id="diff-moderate" onclick="setDiff('moderate')">
+              <div class="diff-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <div class="diff-name">Moderate</div>
+              <div class="diff-desc">4–5 places per day, balanced pace</div>
+            </div>
+            <div class="diff-option" id="diff-intensive" onclick="setDiff('intensive')">
+              <div class="diff-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="diff-name">Intensive</div>
+              <div class="diff-desc">6+ places per day, maximum coverage</div>
+            </div>
+          </div>
+        </div>
+        <div class="plan-field">
+          <label class="plan-label">What would you like to do?</label>
+          <div class="interests-grid">
+            <div class="interest-option selected" id="int-history" onclick="toggleInterest('history')">
+              <span class="interest-emoji">🏛️</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Historical Spots</span>
+            </div>
+            <div class="interest-option" id="int-romantic" onclick="toggleInterest('romantic')">
+              <span class="interest-emoji">🌹</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Romantic Places</span>
+            </div>
+            <div class="interest-option" id="int-scenic" onclick="toggleInterest('scenic')">
+              <span class="interest-emoji">🌅</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Scenic Places</span>
+            </div>
+            <div class="interest-option" id="int-food" onclick="toggleInterest('food')">
+              <span class="interest-emoji">🍽️</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Local Food & Drinks</span>
+            </div>
+            <div class="interest-option" id="int-hidden" onclick="toggleInterest('hidden')">
+              <span class="interest-emoji">💎</span>
+              <div class="interest-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+              <span class="interest-label">Hidden Gems</span>
+            </div>
+          </div>
+        </div>
+        <button class="plan-generate-btn" id="plan-btn" onclick="generatePlan()">
+          <svg viewBox="0 0 24 24">
+            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          Build My Trip
+        </button>
+      </div>
+    </div>
+    <div class="plan-loading" id="plan-loading">
+      <div class="plan-loading-spinner"></div>
+      <div class="plan-loading-text">Crafting your personal Berlin trip…</div>
+    </div>
+    <div class="plan-result" id="plan-result">
+      <div class="plan-result-header">
+        <div>
+          <div class="plan-result-title">Your Berlin Trip</div>
+          <div class="plan-result-meta" id="plan-result-meta"></div>
+        </div>
+        <span class="plan-result-badge">AI Generated</span>
+      </div>
+      <div class="plan-result-body" id="plan-results"></div>
+    </div>
+  </div>
+</div>-->
 <!-- ══════════════════════════════════════════════ FOOTER ══ -->
 <footer id="site-footer">
   <div class="footer-inner">
@@ -107,6 +444,17 @@
       </ul>
     </div>
      <div>
+   <div class="footer-col-title">Categories</div>
+      <ul class="footer-links">
+       <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter('Prussian & Imperial Landmarks '),100)">Prussian & Imperial Landmarks </a></li>
+        <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter(' Berlin Wall & Cold War Sites'),100)"> Berlin Wall & Cold War Sites</a></li>
+         <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter('Third Reich & Totalitarian Ruins'),100)">Third Reich & Totalitarian Ruins</a></li>
+         <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter('Hidden Gems & Secret Parks'),100)">Hidden Gems & Secret Parks</a></li>
+        <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter(' World-Class Museums'),100)"> World-Class Museums</a></li>
+        <li><a onclick="navigate('explore'); setTimeout(()=>setDirFilter('Leisure & Classic Berlin'),100)">Leisure & Classic Berlin</a></li>
+      </ul>
+    </div>
+    <div>
       <div class="footer-col-title">Explore</div>
       <ul class="footer-links">
         <li><a onclick="navigate('map')">Interactive Map</a></li>
@@ -119,30 +467,9 @@
   <div class="footer-bottom">
     <span class="footer-copy">&copy; 2026 Voyageur &amp; Co — Europe</span>
     <span class="footer-badge">Version 2.0</span>
-  </div>    
+  </div>
 </footer>
-</body>
-</html>
-
-<!-- ───────── SCRIPTS ───────── -->
+<script src="blog.js"></script>
 <script src="script.js"></script>
-
-<script>
-/* SIMPLE PAGE ROUTER */
-function navigate(page) {
-
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
-
-  document.getElementById("page-" + page)?.classList.add("active");
-}
-
-/* CITY MENU */
-function toggleCityMenu() {
-  document.getElementById("city-menu").classList.toggle("active");
-}
-</script>
-
 </body>
 </html>
