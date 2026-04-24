@@ -24,6 +24,18 @@
   </div>
   <ul class="nav-links">
     <li><a onclick="navigate('home')" data-page="home">Home</a></li>
+    <div class="city-hamburger">
+  <button class="hamburger-btn" onclick="toggleCityMenu()">
+    ☰
+  </button>
+  <div id="city-menu" class="city-menu">
+    <div onclick="switchCity('berlin')">Berlin</div>
+    <div onclick="switchCity('paris')">Paris</div>
+    <div onclick="switchCity('rome')">Rome</div>
+    <div onclick="switchCity('london')">London</div>
+    <div onclick="switchCity('barcelona')">Barcelona</div>
+  </div>
+</div>
   <!--  <li><a onclick="navigate('about')" data-page="about">About us</a></li>
 <li><a onclick="navigate('explore')" data-page="explore">Explore</a></li>
    <li><a onclick="navigate('blog')" data-page="blog">Blog</a></li>
@@ -98,10 +110,10 @@
       </div>
     </div>
   </section>
-<!--  <section class="home-highlights">
+ <section class="home-highlights">
     <div class="section-header">
       <span class="section-label" style="color: var(--navy);">Featured Places</span>
-      <h2 class="section-title section-title-dark">Must-See in Berlin</h2>
+      <h2 class="section-title section-title-dark">Must-See in Europe</h2>
       <div class="section-line"></div>
     </div>  
     <div class="highlights-grid">
@@ -118,11 +130,11 @@
       <div class="highlight-card" onclick="navigate('explore')">
         <div class="highlight-img">
           <div class="highlight-img-inner"  style="background-image: background-size: cover; background-position: center;"></div>
-          <span class="highlight-cat">Cold War Frontier</span>
+          <span class="highlight-cat">English Legacy</span>
         </div>
         <div class="highlight-body">
-          <h3 class="highlight-name">Checkpoint Charlie</h3>
-          <p class="highlight-desc">The most famous crossing point between East and West. A silent witness to the intelligence battles of the Cold War and the ultimate symbol of a divided world.</p>
+          <h3 class="highlight-name">Big Ben</h3>
+          <p class="highlight-desc">The Great Bell was cast in 1858 and named after Sir Benjamin Hall, becoming a worldwide symbol of British resilience and precision.</p>
         </div>
       </div>
       <div class="highlight-card" onclick="navigate('explore')">
@@ -131,19 +143,12 @@
           <span class="highlight-cat">Prussian Grandeur</span>
         </div>
         <div class="highlight-body">
-          <h3 class="highlight-name">Brandenburg Gate</h3>
-          <p class="highlight-desc">The ultimate icon of Berlin. A neoclassical masterpiece commissioned by King Frederick William II, standing as a testament to Prussian glory and reunification.</p>
+          <h3 class="highlight-name">The Louvre</h3>
+          <p class="highlight-desc">Originally built as a fortress in the 12th century, the Louvre evolved into a royal palace before transforming into the world’s largest and most visited art museum during the French Revolution.</p>
         </div>
       </div>
     </div>
-  </section>-->
-  <div class="city-switcher">
-  <button onclick="switchCity('berlin')">Berlin</button>
-  <button onclick="switchCity('paris')">Paris</button>
-  <button onclick="switchCity('rome')">Rome</button>
-  <button onclick="switchCity('london')">London</button>
-  <button onclick="switchCity('barcelona')">Barcelona</button>
-</div>
+  </section>
 <!--  <section class="home-stats">
     <div class="stats-row">
       <div>
