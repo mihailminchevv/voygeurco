@@ -60,6 +60,16 @@ let leafletMap = null;
 let mapMarkers = [];
 let selectedPlaceId = null;
 let mapInitialized = false;
+/* ── About us  ── */
+function navigate(page) {
+  const pages = document.querySelectorAll(".page");
+
+  pages.forEach(p => p.classList.remove("active"));
+
+  document.getElementById("page-" + page).classList.add("active");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 /* ── NAVIGATION ── */
 function navigate(page) {
