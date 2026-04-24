@@ -545,6 +545,13 @@
   .pill:hover { border-color: var(--navy); color: var(--navy); }
   .pill.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
  /* About us */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
  .about-content h2 {
   font-family: 'Playfair Display', serif;
   color: #c9a84c;
