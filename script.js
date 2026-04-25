@@ -1,11 +1,16 @@
 /* ─────────────────────────────
-   CITIES SYSTEM (FIXED CLEAN VERSION)
+   MAP STATE
 ────────────────────────────── */
 
-/* ── CITIES DATA ── */
+let leafletMap = null;
+let mapMarkers = [];
+
+/* ─────────────────────────────
+   CITY DATA
+────────────────────────────── */
+
 const cities = {
   berlin: {
-    name: "Berlin",
     center: [52.5200, 13.4050],
     zoom: 13,
     attractions: [
@@ -13,156 +18,53 @@ const cities = {
       { id: 2, name: "Reichstag Dome", category: "Landmarks", lat: 52.5186, lng: 13.3761 },
       { id: 3, name: "Museum Island", category: "Culture", lat: 52.5169, lng: 13.3995 },
       { id: 4, name: "Checkpoint Charlie", category: "Cold War", lat: 52.5074, lng: 13.3904 },
-      { id: 5, name: "Berlin Wall Memorial", category: "History", lat: 52.5351, lng: 13.3904 },
-      { id: 6, name: "East Side Gallery", category: "Street Art", lat: 52.5050, lng: 13.4399 },
-      { id: 7, name: "Charlottenburg Palace", category: "Palaces", lat: 52.5211, lng: 13.2958 },
-      { id: 8, name: "Alexanderplatz", category: "City Life", lat: 52.5219, lng: 13.4132 },
-      { id: 9, name: "Berlin Cathedral", category: "Architecture", lat: 52.5194, lng: 13.4010 },
-      { id: 10, name: "Tiergarten Park", category: "Nature", lat: 52.5145, lng: 13.3501 }
+      { id: 5, name: "Berlin Wall Memorial", category: "History", lat: 52.5351, lng: 13.3904 }
     ]
   },
 
-  paris: {
-    name: "Paris",
-    center: [48.8566, 2.3522],
-    zoom: 13,
-    attractions: Array.from({ length: 40 }).map((_, i) => ({
-      id: i + 1,
-      name: `Paris Place ${i + 1}`,
-      category: "Landmarks",
-      lat: 48.8566 + Math.random() * 0.05,
-      lng: 2.3522 + Math.random() * 0.05
-    }))
-  },
-
-  rome: {
-    name: "Rome",
-    center: [41.9028, 12.4964],
-    zoom: 13,
-    attractions: Array.from({ length: 40 }).map((_, i) => ({
-      id: i + 1,
-      name: `Rome Site ${i + 1}`,
-      category: "History",
-      lat: 41.9028 + Math.random() * 0.05,
-      lng: 12.4964 + Math.random() * 0.05
-    }))
-  },
-
-  london: {
-    name: "London",
-    center: [51.5074, -0.1278],
-    zoom: 13,
-    attractions: Array.from({ length: 40 }).map((_, i) => ({
-      id: i + 1,
-      name: `London Spot ${i + 1}`,
-      category: "Landmarks",
-      lat: 51.5074 + Math.random() * 0.05,
-      lng: -0.1278 + Math.random() * 0.05
-    }))
-  },
-
-  barcelona: {
-    name: "Barcelona",
-    center: [41.3851, 2.1734],
-    zoom: 13,
-    attractions: Array.from({ length: 40 }).map((_, i) => ({
-      id: i + 1,
-      name: `Barcelona Place ${i + 1}`,
-      category: "Architecture",
-      lat: 41.3851 + Math.random() * 0.05,
-      lng: 2.1734 + Math.random() * 0.05
-    }))
-  }
+  paris: generateCity("Paris", 48.8566, 2.3522),
+  rome: generateCity("Rome", 41.9028, 12.4964),
+  london: generateCity("London", 51.5074, -0.1278),
+  barcelona: generateCity("Barcelona", 41.3851, 2.1734)
 };
 
-/* ── STATE (FIXED) ── */
-let currentCity = "berlin";
-let currentPage = "home";
-
-let dirFilter = "all";
-let activeAttractions = [];
-
-/* map state */
-let leafletMap = null;
-let mapMarkers = [];
-let selectedPlaceId = null;
-let mapInitialized = false;
-
-/* ─────────────────────────────
-   CITY SWITCHER
-────────────────────────────── */
-
-function toggleCityMenu() {
-  document.getElementById("city-menu")?.classList.toggle("active");
-}
-
-function switchCity(cityKey) {
-  if (!cities[cityKey]) return;
-
-  currentCity = cityKey;
-  activeAttractions = cities[cityKey].attractions;
-
-  renderExplore();
-
-  if (leafletMap) {
-    leafletMap.setView(
-      cities[cityKey].center,
-      cities[cityKey].zoom
-    );
-
-    mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
-    mapMarkers = [];
-
-    activeAttractions.forEach(p => {
-      const marker = L.marker([p.lat, p.lng], {
-        icon: createMarkerIcon(p.category)
-      })
-        .addTo(leafletMap)
-        .bindPopup(`<b>${p.name}</b><br>${p.category}`);
-
-      mapMarkers.push({ id: p.id, marker, place: p });
-    });
-
-    renderMapList(activeAttractions);
-  }
-
-  document.getElementById("city-menu")?.classList.remove("active");
+/* helper */
+function generateCity(name, lat, lng) {
+  return {
+    center: [lat, lng],
+    zoom: 13,
+    attractions: Array.from({ length: 40 }).map((_, i) => ({
+      id: i + 1,
+      name: `${name} Place ${i + 1}`,
+      category: "Landmarks",
+      lat: lat + (Math.random() - 0.5) * 0.05,
+      lng: lng + (Math.random() - 0.5) * 0.05
+    }))
+  };
 }
 
 /* ─────────────────────────────
-   FIX: SAFE GET
+   INIT CITY PAGE (MAIN ENTRY)
 ────────────────────────────── */
 
-function getActiveAttractions() {
-  return activeAttractions.length
-    ? activeAttractions
-    : cities[currentCity].attractions;
+function initCity(cityKey) {
+  const city = cities[cityKey];
+  if (!city) return;
+
+  renderExplore(city);
+  initMap(city);
 }
 
 /* ─────────────────────────────
-   EXPLORE
+   EXPLORE SECTION
 ────────────────────────────── */
 
-function renderExplore() {
-  const q = (document.getElementById("dir-search-input")?.value || "")
-    .toLowerCase();
-
-  const data = getActiveAttractions();
-
-  const filtered = data.filter(p => {
-    const matchCat = dirFilter === "all" || p.category === dirFilter;
-    const matchQ =
-      !q ||
-      p.name.toLowerCase().includes(q);
-
-    return matchCat && matchQ;
-  });
-
+function renderExplore(city) {
   const grid = document.getElementById("dir-grid");
   if (!grid) return;
 
-  grid.innerHTML = filtered.map(p => `
-    <div class="place-card" onclick="selectPlace(${p.id})">
+  grid.innerHTML = city.attractions.map(p => `
+    <div class="place-card">
       <div class="place-card-name">${p.name}</div>
       <div class="place-card-cat">${p.category}</div>
     </div>
@@ -170,33 +72,51 @@ function renderExplore() {
 }
 
 /* ─────────────────────────────
-   MAP
+   MAP INIT
 ────────────────────────────── */
 
-function renderMapList(list) {
-  const data = list || getActiveAttractions();
-  const container = document.getElementById("map-places-list");
-  if (!container) return;
+function initMap(city) {
+  leafletMap = L.map("leaflet-map").setView(
+    city.center,
+    city.zoom
+  );
 
-  container.innerHTML = data.map(p => `
-    <div class="map-place-item"
-         onclick="selectPlace(${p.id})">
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap"
+  }).addTo(leafletMap);
+
+  city.attractions.forEach(p => {
+    const marker = L.marker([p.lat, p.lng])
+      .addTo(leafletMap)
+      .bindPopup(`<b>${p.name}</b><br>${p.category}`);
+
+    mapMarkers.push(marker);
+  });
+
+  renderMapList(city);
+}
+
+/* ─────────────────────────────
+   MAP LIST
+────────────────────────────── */
+
+function renderMapList(city) {
+  const list = document.getElementById("map-places-list");
+  if (!list) return;
+
+  list.innerHTML = city.attractions.map(p => `
+    <div class="map-place-item" onclick="goToPlace(${p.lat}, ${p.lng})">
       <div>${p.name}</div>
-      <div>${p.category}</div>
+      <small>${p.category}</small>
     </div>
   `).join("");
 }
 
-function selectPlace(id) {
-  const p = getActiveAttractions().find(x => x.id === id);
-  if (!p) return;
+/* ─────────────────────────────
+   MAP INTERACTION
+────────────────────────────── */
 
-  selectedPlaceId = id;
-
-  if (leafletMap) {
-    leafletMap.setView([p.lat, p.lng], 16);
-
-    const m = mapMarkers.find(x => x.id === id);
-    if (m) m.marker.openPopup();
-  }
+function goToPlace(lat, lng) {
+  if (!leafletMap) return;
+  leafletMap.setView([lat, lng], 16);
 }
