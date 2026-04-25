@@ -4,251 +4,137 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Voyageur & Co — Discover Europe</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=DM+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- ── NAV ── -->
+<!-- ───── NAV ───── -->
 <nav id="main-nav">
+
+  <!-- LOGO -->
   <div class="nav-brand" onclick="window.location.href='index.html'">
-    <div class="nav-brand-icon">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-      </svg>
-    </div>
     <span class="nav-brand-text">Voyageur<span>Co</span></span>
   </div>
 
+  <!-- LINKS -->
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-   
-    
-<!--  <button class="hamburger-btn" onclick="toggleCityMenu()">
-    ☰
-  </button>
-       <div id="city-menu" class="city-menu">
-    <div onclick="switchCity('berlin')">Berlin</div>
-    <div onclick="switchCity('paris')">Paris</div>
-    <div onclick="switchCity('rome')">Rome</div>
-    <div onclick="switchCity('london')">London</div>
-    <div onclick="switchCity('barcelona')">Barcelona</div>
-  </div>
-    <div class="city-menu">
-  <a href="cities/berlin.html">Berlin</a>
-  <a href="cities/paris.html">Paris</a>
-  <a href="cities/rome.html">Rome</a>
-  <a href="cities/london.html">London</a>
-  <a href="cities/barcelona.html">Barcelona</a>
-</div>-->
+
+    <!-- CITY DROPDOWN -->
+    <li class="dropdown">
+      <button class="dropdown-btn">Cities ▾</button>
+
+      <div class="dropdown-content">
+        <a href="cities/berlin.html">Berlin</a>
+        <a href="cities/paris.html">Paris</a>
+        <a href="cities/rome.html">Rome</a>
+        <a href="cities/london.html">London</a>
+        <a href="cities/barcelona.html">Barcelona</a>
+      </div>
+    </li>
   </ul>
+
 </nav>
 
-<!-- ══════════════════════════════════════════════════ HOME ══ -->
-<div id="page-home" class="page active">
+<!-- ───── HERO ───── -->
+<section class="hero">
+  <div class="hero-content">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-pattern"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Explore Europe</div>
-      <h1 class="hero-title">Discover<br><em>Europe</em></h1>
-      <p class="hero-subtitle">Europe: A mix of different nationalities and history</p>
-      <p class="hero-description">We offer carefully selected places in different cities in Europe, so you can explore Europe and see all of its beauty. The thing that separates us from other tourist sites is our AI trip planner. You can select how long you want to stay in the city, how intense the trip should be, and what kind of places to include.</p>
-      <div class="btn-group">
-        <!-- ✅ Бутон 1 — отваря city menu -->
-        <button class="btn-primary" onclick="toggleCityMenu()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          Choose a City
-        </button>
-        <!-- 
-        <button class="btn-outline" onclick="window.location.href='cities/berlin.html#create'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-          Build My Itinerary
-        </button>-->
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
-  </section>
+    <h1>Discover <em>Europe</em></h1>
 
-  <!-- WHAT WE OFFER -->
-  <section class="home-features">
-    <div class="section-header">
-      <span class="section-label">What We Offer</span>
-      <h2 class="section-title">Your Guide to<br><em style="font-style:italic; color: var(--gold-light);">Europe</em></h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-        </div>
-        <h3 class="feature-title">Interactive Map</h3>
-        <p class="feature-text">Navigate Europe's landmarks, restaurants, and hidden gems on a fully interactive map powered by OpenStreetMap.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        </div>
-        <h3 class="feature-title">Curated Directory</h3>
-        <p class="feature-text">Browse a structured collection of tourist spots, historic places and the best places for photos — filterable by category.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        </div>
-        <h3 class="feature-title">Travel Blog</h3>
-        <p class="feature-text">Insider tips, seasonal guides, and local recommendations written to help you make the most of your visit to Europe.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-        </div>
-        <h3 class="feature-title">AI Trip Planner</h3>
-        <p class="feature-text">From Rome's ancient history to the quiet remains of the Berlin Wall — let our AI build your perfect itinerary in seconds.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED PLACES 
-  <section class="home-highlights">
-    <div class="section-header">
-      <span class="section-label" style="color: var(--navy);">Featured Places</span>
-      <h2 class="section-title section-title-dark">Must-See in Europe</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="highlights-grid">
-  
-      <div class="highlight-card" onclick="window.location.href='cities/berlin.html'">
-        <div class="highlight-img">
-          <div class="highlight-img-inner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Reichstag_building_Berlin_view_from_west_before_sunset.jpg/1280px-Reichstag_building_Berlin_view_from_west_before_sunset.jpg'); background-size: cover; background-position: center;"></div>
-          <span class="highlight-cat">🇩🇪 Berlin</span>
-        </div>
-        <div class="highlight-body">
-          <h3 class="highlight-name">The Reichstag</h3>
-          <p class="highlight-desc">The seat of the German Parliament. An architectural masterpiece of stone and glass, representing the turbulent evolution of European power and democratic resilience.</p>
-        </div>
-      </div>
-
-      
-      <div class="highlight-card" onclick="window.location.href='cities/london.html'">
-        <div class="highlight-img">
-          <div class="highlight-img-inner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg/800px-Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg'); background-size: cover; background-position: center;"></div>
-          <span class="highlight-cat">🇬🇧 London</span>
-        </div>
-        <div class="highlight-body">
-          <h3 class="highlight-name">Big Ben</h3>
-          <p class="highlight-desc">The Great Bell was cast in 1858 and named after Sir Benjamin Hall, becoming a worldwide symbol of British resilience and precision.</p>
-        </div>
-      </div>
-
-      
-      <div class="highlight-card" onclick="window.location.href='cities/paris.html'">
-        <div class="highlight-img">
-          <div class="highlight-img-inner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Paris_-_Musee_du_Louvre_-_Facade_ouest.jpg/1280px-Paris_-_Musee_du_Louvre_-_Facade_ouest.jpg'); background-size: cover; background-position: center;"></div>
-          <span class="highlight-cat">🇫🇷 Paris</span>
-        </div>
-        <div class="highlight-body">
-          <h3 class="highlight-name">The Louvre</h3>
-          <p class="highlight-desc">Originally built as a fortress in the 12th century, the Louvre evolved into the world's largest and most visited art museum during the French Revolution.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>-->
-
-</div>
-<!-- ══ END PAGE HOME ══ -->
-   <!-- ══════════════════════════════════════════════ ABOUT US ══ -->
-  <div id="page-about" class="page">
-  <div class="page-hero">
-    <div class="page-hero-label">Who We Are</div>
-    <h1 class="page-hero-title">About <em>Voyageur & Co</em></h1>
-    <p class="page-hero-sub">A new generation travel platform powered by AI and curated experiences.</p>
-  </div>
-
-  <div class="about-content" style="max-width: 900px; margin: 0 auto; padding: 60px 20px; color: white;">
-    
-    <h2 style="margin-bottom: 20px;">Our Mission</h2>
-    <p style="opacity: 0.8; line-height: 1.7;">
-      We build intelligent travel experiences that help people discover cities in a deeper way — not just tourist spots, but stories, history and hidden places.
+    <p>
+      Explore cities, discover history and build your trip with AI.
     </p>
 
-    <h2 style="margin-top: 40px; margin-bottom: 20px;">What Makes Us Different</h2>
-    <ul style="opacity: 0.8; line-height: 1.8;">
-      <li>AI-powered travel planning</li>
-      <li>Multi-city exploration system</li>
-      <li>Curated hidden gems instead of generic tourism lists</li>
-      <li>Interactive maps and storytelling</li>
-    </ul>
+    <!-- BUTTONS -->
+    <div class="btn-group">
 
-    <h2 style="margin-top: 40px; margin-bottom: 20px;">Vision</h2>
-    <p style="opacity: 0.8; line-height: 1.7;">
-      To become the first AI-native travel platform where every city is experienced uniquely for each user.
-    </p>
+      <a href="cities/berlin.html" class="btn-primary">
+        Start Exploring
+      </a>
+
+      <button onclick="toggleCityMenu()" class="btn-outline">
+        Choose City
+      </button>
+
+    </div>
 
   </div>
+</section>
+
+<!-- ───── CITY QUICK MENU ───── -->
+<div id="city-menu" class="city-menu">
+
+  <a href="cities/berlin.html">🇩🇪 Berlin</a>
+  <a href="cities/paris.html">🇫🇷 Paris</a>
+  <a href="cities/rome.html">🇮🇹 Rome</a>
+  <a href="cities/london.html">🇬🇧 London</a>
+  <a href="cities/barcelona.html">🇪🇸 Barcelona</a>
+
 </div>
 
-<!-- ══════════════════════════════════════════════ FOOTER ══ -->
-<footer id="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand-name">Voyageur<span>&amp;Co</span></div>
-      <p class="footer-brand-desc">A curated digital guide to Europe — helping travelers discover Europe through another perspective.</p>
+<!-- ───── FEATURES ───── -->
+<section class="home-features">
+
+  <h2>Your Guide to Europe</h2>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <h3>Interactive Map</h3>
+      <p>Explore locations visually.</p>
     </div>
-    <div>
-<!--      <div class="footer-col-title">Cities</div>
-      <ul class="footer-links">
-        <li><a href="cities/berlin.html">🇩🇪 Berlin</a></li>
-        <li><a href="cities/paris.html">🇫🇷 Paris</a></li>
-        <li><a href="cities/rome.html">🇮🇹 Rome</a></li>
-        <li><a href="cities/london.html">🇬🇧 London</a></li>
-        <li><a href="cities/barcelona.html">🇪🇸 Barcelona</a></li>
-      </ul>
+
+    <div class="feature-card">
+      <h3>Curated Places</h3>
+      <p>Only high-quality spots.</p>
     </div>
-    <div>
-      <div class="footer-col-title">Explore</div>
-      <ul class="footer-links">
-        <li><a href="cities/berlin.html#map">Interactive Map</a></li>
-        <li><a href="cities/berlin.html#explore">Explore Landmarks</a></li>
-        <li><a href="cities/berlin.html#blog">Travel Blog</a></li>
-        <li><a href="cities/berlin.html#create">Create My Trip</a></li>
-      </ul>
+
+    <div class="feature-card">
+      <h3>Travel Blog</h3>
+      <p>AI generated content.</p>
     </div>
-    <div>-->
-      <div class="footer-col-title">About</div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-      </ul>
+
+    <div class="feature-card">
+      <h3>AI Planner</h3>
+      <p>Automatic trip generation.</p>
     </div>
+
   </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 Voyageur &amp; Co — Europe</span>
-    <span class="footer-badge">Version 2.0</span>
+
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer>
+
+  <p>© 2026 Voyageur & Co</p>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="cities/berlin.html">Berlin</a>
+    <a href="cities/paris.html">Paris</a>
   </div>
+
 </footer>
 
+<!-- ───── JS ───── -->
 <script>
-  // ✅ Toggle city menu
-  function toggleCityMenu() {
-    const menu = document.getElementById('city-menu');
-    menu.classList.toggle('open');
-  }
+function toggleCityMenu() {
+  document.getElementById("city-menu").classList.toggle("active");
+}
 
-  // ✅ Затваря менюто при клик извън него
-  document.addEventListener('click', (e) => {
-    const hamburger = document.querySelector('.city-hamburger');
-    if (hamburger && !hamburger.contains(e.target)) {
-      document.getElementById('city-menu').classList.remove('open');
-    }
-  });
+// close on outside click
+document.addEventListener("click", (e) => {
+  const menu = document.getElementById("city-menu");
+
+  if (!e.target.closest(".btn-outline")) {
+    menu.classList.remove("active");
+  }
+});
 </script>
 
 </body>
