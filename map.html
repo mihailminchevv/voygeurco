@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Map — Voyageur&Co</title>
-<title>Explore Berlin's best places</title>
+
+<title>Map — Voyageur & Co</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -16,6 +16,32 @@
 </style>
 </head>
 <body>
+
+
+<nav id="main-nav">
+  <div class="nav-brand" onclick="window.location.href='index.html'">
+    <div class="nav-brand-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+      </svg>
+    </div>
+    <span class="nav-brand-text">Voyageur<span>Co</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="berlin.html">Berlin</a></li>
+    <li><a href="paris.html">Paris</a></li>
+    <li><a href="map.html" class="active">Map</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li>
+      <a href="create.html"
+         style="color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 5px 14px; border-radius: 100px;">
+        Create my trip
+      </a>
+    </li>
+  </ul>
+</nav>
+
 <div class="map-layout">
   <aside class="map-sidebar">
     <div class="map-sidebar-title">Berlin Locations</div>
@@ -24,15 +50,19 @@
   </aside>
   <div id="leaflet-map"></div>
 </div>
+
 <script src="script.js"></script>
 <script>
-const map = L.map('leaflet-map').setView([52.52, 13.405], 13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap'
-}).addTo(map);
-L.marker([52.52, 13.405]).addTo(map)
-  .bindPopup("Berlin")
-  .openPopup();
+  const map = L.map('leaflet-map').setView([52.52, 13.405], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  L.marker([52.52, 13.405]).addTo(map)
+    .bindPopup("Berlin")
+    .openPopup();
 </script>
+
 </body>
 </html>
