@@ -123,7 +123,7 @@ const blogPosts = [
 ];
 
 /* ── BLOG ── */
-function renderBlog() {
+function loadBlog() {
   const grid = document.getElementById('blog-grid');
   if (!grid) return;
 
