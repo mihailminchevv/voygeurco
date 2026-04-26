@@ -6,7 +6,7 @@ let leafletMap = null;
 let mapMarkers = [];
 
 /* ─────────────────────────────
-   CITY DATA
+   CITY DATA 
 ────────────────────────────── */
 
 const cities = {
@@ -14,7 +14,7 @@ const cities = {
     center: [52.5200, 13.4050],
     zoom: 13,
     attractions: [
-     // PRUSSIAN & IMPERIAL LANDMARKS
+// PRUSSIAN & IMPERIAL LANDMARKS
   { id: 1,  name: "Brandenburg Gate",                      category: "Prussian Landmarks",  description: "The definitive symbol of Berlin and Prussian neoclassical architecture.",                          city: "Berlin", lat: 52.5163, lng: 13.3777, image: "https://wikimedia.org" },
   { id: 2,  name: "Reichstag (The Dome)",                  category: "Prussian Landmarks",  description: "The seat of the German Parliament with Foster's iconic glass dome.",                               city: "Berlin", lat: 52.5186, lng: 13.3761, image: "https://wikimedia.org" },
   { id: 3,  name: "Charlottenburg Palace",                 category: "Prussian Landmarks",  description: "The largest royal palace in Berlin, built by the Hohenzollern dynasty.",                          city: "Berlin", lat: 52.5211, lng: 13.2958, image: "https://wikimedia.org" },
@@ -66,7 +66,7 @@ const cities = {
   { id: 41, name: "German Museum of Technology (Aviation)",category: "Tech & Arts Museums", description: "The aerospace wing of the technology museum.",                                                  city: "Berlin", lat: 52.4988, lng: 13.3780, image: "https://wikimedia.org" },
   { id: 42, name: "Museum Island (Pergamon)",              category: "Tech & Arts Museums", description: "Home to the Pergamon Altar and the Ishtar Gate.",                                               city: "Berlin", lat: 52.5210, lng: 13.3965, image: "https://wikimedia.org" }
 
-    ]
+]
   },
 
   paris: generateCity("Paris", 48.8566, 2.3522),
@@ -75,7 +75,7 @@ const cities = {
   barcelona: generateCity("Barcelona", 41.3851, 2.1734)
 };
 
-/* helper */
+/* helper (НЕ ПИПАМ) */
 function generateCity(name, lat, lng) {
   return {
     center: [lat, lng],
@@ -91,7 +91,7 @@ function generateCity(name, lat, lng) {
 }
 
 /* ─────────────────────────────
-   INIT CITY PAGE (MAIN ENTRY)
+   INIT CITY PAGE
 ────────────────────────────── */
 
 function initCity(cityKey) {
@@ -103,7 +103,7 @@ function initCity(cityKey) {
 }
 
 /* ─────────────────────────────
-   EXPLORE SECTION
+   EXPLORE
 ────────────────────────────── */
 
 function renderExplore(city) {
@@ -119,14 +119,19 @@ function renderExplore(city) {
 }
 
 /* ─────────────────────────────
-   MAP INIT
+   MAP INIT (FIXED)
 ────────────────────────────── */
 
 function initMap(city) {
-  leafletMap = L.map("leaflet-map").setView(
-    city.center,
-    city.zoom
-  );
+
+  // FIX: ако вече има карта → унищожи я
+  if (leafletMap) {
+    leafletMap.remove();
+    leafletMap = null;
+    mapMarkers = [];
+  }
+
+  leafletMap = L.map("leaflet-map").setView(city.center, city.zoom);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap"
@@ -160,7 +165,7 @@ function renderMapList(city) {
 }
 
 /* ─────────────────────────────
-   MAP INTERACTION
+   MAP ACTION
 ────────────────────────────── */
 
 function goToPlace(lat, lng) {
