@@ -805,8 +805,6 @@ nav {
 .map-layout {
   display: flex;
   height: 100vh;
-  padding-top: 64px; /* ако navbar е fixed */
-  box-sizing: border-box;
 }
 
 .map-sidebar {
