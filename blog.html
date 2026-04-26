@@ -1,1 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Blog — Voyageur & Co</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<!-- ═════════ NAV ═════════ -->
+<nav id="main-nav">
+  <div class="nav-brand" onclick="window.location.href='index.html'">
+    <span class="nav-brand-text">Voyageur<span>Co</span></span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="map.html">Map</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+  </ul>
+</nav>
+
+
+<!-- ═════════ BLOG LIST PAGE ═════════ -->
+<div id="page-blog" class="page active">
+
+  <div class="page-hero">
+    <div class="page-hero-label">Travel Stories</div>
+
+    <h1 class="page-hero-title">
+      The <span id="blog-city-title">Berlin</span> Blog
+    </h1>
+
+    <p class="page-hero-sub">
+      Insider tips, seasonal guides, and stories from Europe's most important cities.
+    </p>
+  </div>
+
+  <div class="blog-content">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+</div>
+
+
+<!-- ═════════ BLOG POST PAGE ═════════ -->
+<div id="page-blog-post" class="page">
+
+  <div class="post-hero" id="post-hero-img">
+    <div class="post-hero-overlay"></div>
+
+    <div class="post-hero-content">
+
+      <button class="post-back-btn" onclick="navigate('blog')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back to Blog
+      </button>
+
+      <div class="post-tag-label" id="post-tag"></div>
+      <h1 class="post-title" id="post-title"></h1>
+      <div class="post-date" id="post-date"></div>
+
+    </div>
+  </div>
+
+  <div class="post-body-wrap">
+    <div class="post-body" id="post-body"></div>
+
+    <div class="post-footer">
+      <button class="post-back-btn-bottom" onclick="navigate('blog')">
+        Back to all articles
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═════════ SCRIPT ═════════ -->
+<script src="script.js"></script>
+
+<script>
+/* ───────── CITY CONTEXT ───────── */
+const params = new URLSearchParams(window.location.search);
+const currentCity = params.get("city") || "berlin";
+
+document.getElementById("blog-city-title").textContent =
+  currentCity.charAt(0).toUpperCase() + currentCity.slice(1);
+
+/* ───────── NAVIGATION ───────── */
+function navigate(page) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+
+  const target = document.getElementById("page-" + page);
+  if (target) target.classList.add("active");
+
+  if (page === "blog") renderBlog();
+}
+
+/* ───────── BLOG DATA (placeholder) ───────── */
+const blogPosts = {
+  berlin: [
+    {
+      id: 1,
+      title: "Brandenburg Gate — Symbol of Unity",
+      tag: "History",
+      date: "2026",
+      content: "The Brandenburg Gate is one of Berlin’s most iconic landmarks..."
+    },
+    {
+      id: 2,
+      title: "Cold War Berlin Explained",
+      tag: "History",
+      date: "2026",
+      content: "Berlin was the center of Cold War tension between East and West..."
+    }
+  ]
+};
+
+/* ───────── RENDER BLOG ───────── */
+function renderBlog() {
+  const grid = document.getElementById("blog-grid");
+  const posts = blogPosts[currentCity] || [];
+
+  grid.innerHTML = posts.map(p => `
+    <div class="blog-card" onclick="openPost(${p.id})">
+      <div class="blog-card-title">${p.title}</div>
+      <div class="blog-card-tag">${p.tag}</div>
+      <div class="blog-card-date">${p.date}</div>
+    </div>
+  `).join("");
+}
+
+/* ───────── OPEN POST ───────── */
+function openPost(id) {
+  const posts = blogPosts[currentCity] || [];
+  const post = posts.find(p => p.id === id);
+  if (!post) return;
+
+  document.getElementById("post-title").textContent = post.title;
+  document.getElementById("post-tag").textContent = post.tag;
+  document.getElementById("post-date").textContent = post.date;
+  document.getElementById("post-body").textContent = post.content;
+
+  navigate("blog-post");
+}
+
+/* init */
+renderBlog();
+</script>
+
+</body>
+</html>
