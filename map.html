@@ -3,21 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Map — Voyageur & Co</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-#leaflet-map {
-  width: 100%;
-  height: 100vh;
-}
-</style>
 </head>
 <body>
 
-
+<!-- ── NAV ── -->
 <nav id="main-nav">
   <div class="nav-brand" onclick="window.location.href='index.html'">
     <div class="nav-brand-icon">
@@ -29,8 +22,6 @@
   </div>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="berlin.html">Berlin</a></li>
-    <li><a href="paris.html">Paris</a></li>
     <li><a href="map.html" class="active">Map</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li>
@@ -42,27 +33,55 @@
   </ul>
 </nav>
 
-<div class="map-layout">
-  <aside class="map-sidebar">
-    <div class="map-sidebar-title">Berlin Locations</div>
-    <input type="text" placeholder="Search...">
-    <div class="map-places-list" id="map-places-list"></div>
-  </aside>
-  <div id="leaflet-map"></div>
+<!-- ── MAP ── -->
+<div id="page-map" class="page active" style="padding-top: 64px;">
+  <div class="map-layout">
+    <aside class="map-sidebar">
+      <div class="map-sidebar-header">
+        <div class="map-sidebar-title">Berlin Locations</div>
+        <div class="map-sidebar-sub" id="map-count">42 places available</div>
+        <div class="map-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="map-search-input" placeholder="Search…" oninput="filterMapPlaces()">
+        </div>
+      </div>
+
+      <!-- ✅ Поправени pills — data-filter добавен, невалидни атрибути премахнати -->
+      <div class="map-filter-row" id="map-filter-row">
+        <div class="map-pill active" data-filter="all" onclick="setMapFilter('all')">All</div>
+        <div class="map-pill" data-filter="Imperial Legacy & Grandeur" onclick="setMapFilter('Imperial Legacy & Grandeur')">Imperial Legacy & Grandeur</div>
+        <div class="map-pill" data-filter="Berlin Wall & Cold War Sites" onclick="setMapFilter('Berlin Wall & Cold War Sites')">Berlin Wall & Cold War Sites</div>
+        <div class="map-pill" data-filter="Hidden Gems & Secret Parks" onclick="setMapFilter('Hidden Gems & Secret Parks')">Hidden Gems & Secret Parks</div>
+        <div class="map-pill" data-filter="World-Class Museums" onclick="setMapFilter('World-Class Museums')">World-Class Museums</div>
+        <div class="map-pill" data-filter="Leisure & Classic Berlin" onclick="setMapFilter('Leisure & Classic Berlin')">Leisure & Classic Berlin</div>
+        <div class="map-pill" data-filter="Third Reich & Totalitarian Ruins" onclick="setMapFilter('Third Reich & Totalitarian Ruins')">Third Reich & Totalitarian Ruins</div>
+      </div>
+
+      <div class="map-places-list" id="map-places-list"></div>
+
+      <div class="map-info-bar">
+        <div class="map-info-name" id="map-selected-name">Select a location</div>
+        <div class="map-info-coords" id="map-selected-coords">—</div>
+      </div>
+
+      <!-- ✅ Поправени dot класове — без интервали и & -->
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot dot-imperial"></div>Imperial Legacy & Grandeur</div>
+        <div class="legend-item"><div class="legend-dot dot-coldwar"></div>Berlin Wall & Cold War Sites</div>
+        <div class="legend-item"><div class="legend-dot dot-hidden"></div>Hidden Gems & Secret Parks</div>
+        <div class="legend-item"><div class="legend-dot dot-museums"></div>World-Class Museums</div>
+        <div class="legend-item"><div class="legend-dot dot-leisure"></div>Leisure & Classic Berlin</div>
+        <div class="legend-item"><div class="legend-dot dot-ww2"></div>Third Reich & Totalitarian Ruins</div>
+      </div>
+    </aside>
+
+    <div id="map-container">
+      <div id="leaflet-map"></div>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>
-<script>
-  const map = L.map('leaflet-map').setView([52.52, 13.405], 13);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(map);
-
-  L.marker([52.52, 13.405]).addTo(map)
-    .bindPopup("Berlin")
-    .openPopup();
-</script>
 
 </body>
 </html>
