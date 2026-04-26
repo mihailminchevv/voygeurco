@@ -804,8 +804,9 @@ nav {
 /* ── MAP PAGE ── */
 .map-layout {
   display: flex;
-  height: calc(100vh - 64px);
-  margin-top: 64px;
+  height: 100vh;
+  padding-top: 64px; /* ако navbar е fixed */
+  box-sizing: border-box;
 }
 
 .map-sidebar {
