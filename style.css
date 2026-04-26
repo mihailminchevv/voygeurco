@@ -805,6 +805,8 @@ nav {
 .map-layout {
   display: flex;
   height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .map-sidebar {
@@ -837,7 +839,9 @@ nav {
 }
 
 .map-search {
-  display: flex; align-items: center; gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: var(--navy-light);
   border: 1px solid rgba(201,168,76,0.1);
   border-radius: var(--radius);
@@ -846,19 +850,34 @@ nav {
   margin-top: 1rem;
 }
 
-.map-search svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.3); flex-shrink: 0; fill: none; stroke-width: 2; }
-
-.map-search input {
-  border: none; background: transparent;
-  font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
-  color: var(--white);
-  outline: none; width: 100%;
+.map-search svg {
+  width: 14px;
+  height: 14px;
+  stroke: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  fill: none;
+  stroke-width: 2;
 }
 
-.map-search input::placeholder { color: rgba(255,255,255,0.3); }
+.map-search input {
+  border: none;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--white);
+  outline: none;
+  width: 100%;
+}
+
+.map-search input::placeholder {
+  color: rgba(255,255,255,0.3);
+}
 
 .map-filter-row {
-  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
   padding: 0.8rem 1.4rem;
   border-bottom: 1px solid rgba(201,168,76,0.1);
 }
@@ -876,8 +895,17 @@ nav {
   transition: all 0.2s;
 }
 
-.map-pill:hover { border-color: var(--gold); color: var(--gold); }
-.map-pill.active { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 500; }
+.map-pill:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.map-pill.active {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+  font-weight: 500;
+}
 
 .map-places-list {
   flex: 1;
@@ -885,19 +913,32 @@ nav {
   padding: 0.8rem 0;
 }
 
-.map-places-list::-webkit-scrollbar { width: 4px; }
-.map-places-list::-webkit-scrollbar-track { background: transparent; }
-.map-places-list::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 2px; }
+.map-places-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.map-places-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.map-places-list::-webkit-scrollbar-thumb {
+  background: rgba(201,168,76,0.3);
+  border-radius: 2px;
+}
 
 .map-place-item {
-  display: flex; align-items: center; gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 0.9rem 1.4rem;
   cursor: pointer;
   transition: background 0.2s;
   border-left: 2px solid transparent;
 }
 
-.map-place-item:hover { background: rgba(255,255,255,0.04); }
+.map-place-item:hover {
+  background: rgba(255,255,255,0.04);
+}
 
 .map-place-item.selected {
   background: rgba(201,168,76,0.08);
@@ -905,7 +946,8 @@ nav {
 }
 
 .map-place-dot {
-  width: 10px; height: 10px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -919,14 +961,15 @@ nav {
 .dot-leisure   { background: #b0a8e8; }
 .dot-ww2       { background: #8a9bac; }
 
-/* ✅ Поправено — премахната излишна затварящa скоба */
 .map-place-name {
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--white);
 }
 
-.map-place-item.selected .map-place-name { color: var(--gold-light); }
+.map-place-item.selected .map-place-name {
+  color: var(--gold-light);
+}
 
 .map-place-cat {
   font-size: 0.7rem;
@@ -947,7 +990,9 @@ nav {
   font-weight: 600;
   color: var(--gold-light);
   margin-bottom: 0.3rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .map-info-coords {
@@ -959,13 +1004,17 @@ nav {
 
 .map-legend {
   padding: 0.9rem 1.4rem;
-  display: flex; gap: 1rem; flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   background: var(--navy);
   border-top: 1px solid rgba(201,168,76,0.06);
 }
 
 .legend-item {
-  display: flex; align-items: center; gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 0.68rem;
   font-weight: 300;
   color: rgba(255,255,255,0.35);
@@ -973,17 +1022,25 @@ nav {
 }
 
 .legend-dot {
-  width: 7px; height: 7px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
 }
+
+/* ── FIX: MAP RENDERING ── */
 
 #map-container {
   flex: 1;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 #leaflet-map {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 /* ── BLOG PAGE ── */
