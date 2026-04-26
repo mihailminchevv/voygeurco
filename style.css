@@ -49,14 +49,28 @@ nav {
 }
 
 .nav-brand {
-  color: var(--white);
-  font-family: var(--serif);
-  font-weight: 600;
-  cursor: pointer;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  gap: 6px;
+  cursor: pointer;
 }
 
+/* Voyageur - serif, luxury */
+.logo-main {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--white);
+  letter-spacing: 0.5px;
+}
+
+/* Co - modern sans */
+.logo-sub {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(201,168,76,0.9); /* златист акцент */
+}
 .nav-brand-icon {
   width: 32px; height: 32px;
   background: var(--gold);
@@ -615,16 +629,18 @@ nav {
 }
 
 .page-hero-title {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 600;
   color: var(--white);
-  line-height: 1.15;
-  position: relative;
+  line-height: 1.1;
 }
 
-.page-hero-title em { font-style: italic; color: var(--gold-light); }
-
+.hero-city {
+  font-style: italic;
+  color: #c9a84c; /* златисто */
+  font-weight: 500;
+}
 .page-hero-sub {
   font-size: 0.95rem;
   font-weight: 300;
