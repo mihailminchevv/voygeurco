@@ -43,126 +43,124 @@
 </nav>
 
 <!-- ── HERO ── -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">Explore Berlin</div>
-
-    <h1 class="hero-title">Discover<br><em>Berlin</em></h1>
-
-    <p class="hero-subtitle">Berlin: A Symphony of Power and Time</p>
-
-    <p class="hero-description">
-      A curated intelligence on Berlin’s architectural legacy and strategic hubs.
-      From Imperial monuments to Cold War scars — explore the city through curated insights.
-    </p>
-
-    <div class="btn-group">
-      <a class="btn-primary" href="map.html">Explore the Map</a>
-      <a class="btn-outline" href="explore.html">Explore Places</a>
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Explore Berlin</div>
+      <h1 class="hero-title">Discover<br><em>Berlin</em></h1>
+      <p class="hero-subtitle">Berlin: A Symphony of Power and Time</p>
+      <p class="hero-description">  A curated intelligence on Berlin’s architectural legacy and strategic hubs. From Imperial monuments to the scars of the Cold War—explore the city through an interactive grid, analytical directory, and handpicked insights for the discerning traveler.
+      </p>
+      </p>
+  <div class="btn-group">
+        <button class="btn-primary" onclick="navigate('map')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          Explore the Map
+       </button>
+      <button class="btn-outline" onclick="navigate('explore')">Explore</button>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ── FEATURES ── -->
-<section class="home-features">
-
-  <div class="section-header">
-    <span class="section-label">What We Offer</span>
-    <h2 class="section-title">Your Guide to <em>Berlin</em></h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="features-grid">
-
-    <div class="feature-card">
-      <h3>Interactive Map</h3>
-      <p>Navigate Berlin’s landmarks and hidden gems on a dynamic map.</p>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
     </div>
+  </section>
 
-    <div class="feature-card">
-      <h3>Curated Directory</h3>
-      <p>Explore structured lists of historical and modern places.</p>
+  <section class="home-features">
+    <div class="section-header">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Your Guide to<br><em style="font-style:italic; color: var(--gold-light);">Berlin</em></h2>
+      <div class="section-line"></div>
     </div>
-
-    <div class="feature-card">
-      <h3>Travel Blog</h3>
-      <p>Insider tips and stories about Berlin’s history.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        </div>
+        <h3 class="feature-title">Interactive Map</h3>
+        <p class="feature-text">Navigate Berlin's landmarks, restaurants, and hidden gems on a fully interactive map powered by OpenStreetMap.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3 class="feature-title">Curated Directory</h3>
+        <p class="feature-text">Browse a structured collection of tourist spots, historic places and the best places for photo  — filterable by category.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3 class="feature-title">Travel Blog</h3>
+        <p class="feature-text">Insider tips, seasonal guides, and local recommendations written to help you make the most of your visit Europe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3 class="feature-title">Local Discovery</h3>
+        <p class="feature-text">From Prussian monuments to the quiet remains of the Berlin wall— decoding the layers of history and power in Berlin’s most iconic places.</p>
+      </div>
     </div>
-
-    <div class="feature-card">
-      <h3>Local Discovery</h3>
-      <p>Understand Berlin beyond the tourist layer.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── HIGHLIGHTS ── -->
+  </section>
 <section class="home-highlights">
-
-  <div class="section-header">
-    <h2 class="section-title">Must-See in Berlin</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="highlights-grid">
-
-    <div class="highlight-card">
-      <div class="highlight-img">
-        <div class="highlight-img-inner"></div>
-        <span class="highlight-cat">Legacy</span>
+    <div class="section-header">
+      <span class="section-label" style="color: var(--navy);">Featured Places</span>
+      <h2 class="section-title section-title-dark">Must-See in Berlin</h2>
+      <div class="section-line"></div>
+    </div>  
+    <div class="highlights-grid">
+      <div class="highlight-card" onclick="navigate('explore')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner"  style="background-image: background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Strategic Legacy</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">The Reichstag</h3>
+          <p class="highlight-desc">The seat of the German Parliament. An architectural masterpiece of stone and glass, representing the turbulent evolution of European power and democratic resilience.</p>
+        </div>
       </div>
-      <div class="highlight-body">
-        <h3>Reichstag</h3>
-        <p>Symbol of German democracy and history.</p>
+      <div class="highlight-card" onclick="navigate('explore')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner"  style="background-image: background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Cold War Frontier</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">Checkpoint Charlie</h3>
+          <p class="highlight-desc">The most famous crossing point between East and West. A silent witness to the intelligence battles of the Cold War and the ultimate symbol of a divided world.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="highlight-card">
-      <div class="highlight-img">
-        <div class="highlight-img-inner"></div>
-        <span class="highlight-cat">Cold War</span>
-      </div>
-      <div class="highlight-body">
-        <h3>Checkpoint Charlie</h3>
-        <p>Famous East–West crossing point.</p>
-      </div>
-    </div>
-
-    <div class="highlight-card">
-      <div class="highlight-img">
-        <div class="highlight-img-inner"></div>
-        <span class="highlight-cat">Icon</span>
-      </div>
-      <div class="highlight-body">
-        <h3>Brandenburg Gate</h3>
-        <p>The symbol of Berlin’s unity.</p>
+      <div class="highlight-card" onclick="navigate('explore')">
+        <div class="highlight-img">
+          <div class="highlight-img-inner" style="background-image: background-size: cover; background-position: center;"></div>
+          <span class="highlight-cat">Prussian Grandeur</span>
+        </div>
+        <div class="highlight-body">
+          <h3 class="highlight-name">Brandenburg Gate</h3>
+          <p class="highlight-desc">The ultimate icon of Berlin. A neoclassical masterpiece commissioned by King Frederick William II, standing as a testament to Prussian glory and reunification.</p>
+        </div>
       </div>
     </div>
-
-  </div>
-</section>
-
-<!-- ── STATS ── -->
-<section class="home-stats">
-  <div class="stats-row">
-
-    <div>
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Places</div>
-    </div>
-
-    <div>
-      <div class="stat-num">6</div>
-      <div class="stat-label">Categories</div>
-    </div>
-    
-  </div>
-</section>
-
+  </section>
+  <section class="home-stats">
+    <div class="stats-row">
+      <div>
+        <div class="stat-num">42</div>
+        <div class="stat-label">Curated Places</div>
+      </div>
+      <div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div>
+       <div class="stat-num">5</div>
+        <div class="stat-label">Blog Articles</div>
+      </div>
+      <div>
+  </section>
+</div>
 <!-- ── FOOTER ── -->
 <footer id="site-footer">
   <div class="footer-bottom">
