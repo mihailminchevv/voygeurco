@@ -287,7 +287,6 @@ Write in English.`;
 }
 // Blog page
 function navigate(page) {
-function navigate(page) {
   const pages = document.querySelectorAll('.page');
   const target = document.getElementById('page-' + page);
 
