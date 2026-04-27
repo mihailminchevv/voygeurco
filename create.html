@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Create Trip — VoyageurCo</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <div class="nav-brand" onclick="window.location.href='index.html'">
+    <span class="logo-serif">Voyageur</span><span class="logo-sans">Co</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="map.html">Map</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li>
+      <a href="create.html" class="active"
+         style="color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 5px 14px; border-radius: 100px;">
+        Create my trip
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ── PAGE ── -->
+<div class="page active" style="padding-top: 64px;">
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-label">Powered by AI</div>
+    <h1 class="page-hero-title">Plan Your <em>Trip</em></h1>
+    <p class="page-hero-sub">
+      Tell us when you're visiting and what you love — we'll build your personal Berlin trip.
+    </p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="plan-layout">
+
+    <div class="plan-error" id="plan-error"></div>
+
+    <!-- FORM -->
+    <div class="plan-form-card">
+
+      <div class="plan-form-header">
+        <div class="plan-form-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+
+        <div>
+          <div class="plan-form-title">AI Travel Planner</div>
+          <div class="plan-form-sub">Your personal itinerary for Berlin, Germany</div>
+        </div>
+      </div>
+
+      <div class="plan-form-body">
+
+        <!-- DAYS -->
+        <div class="plan-field">
+          <label class="plan-label">
+            Number of days
+            <span id="days-display">2 days</span>
+          </label>
+
+          <div class="days-slider-wrap">
+            <input type="range" class="days-slider" id="days-slider"
+              min="1" max="7" value="2"
+              oninput="updateDays(this.value)">
+          </div>
+
+          <div class="days-ticks">
+            <span onclick="setDays(1)">1 day</span>
+            <span onclick="setDays(2)" class="active">2 days</span>
+            <span onclick="setDays(3)">3 days</span>
+            <span onclick="setDays(4)">4 days</span>
+            <span onclick="setDays(5)">5 days</span>
+            <span onclick="setDays(6)">6 days</span>
+            <span onclick="setDays(7)">7 days</span>
+          </div>
+        </div>
+
+        <!-- DIFFICULTY -->
+        <div class="plan-field">
+          <label class="plan-label">Trip pace</label>
+
+          <div class="diff-options">
+
+            <div class="diff-option" onclick="setDiff('relaxed')" id="diff-relaxed">
+              <div class="diff-name">Relaxed</div>
+              <div class="diff-desc">2–3 places per day</div>
+            </div>
+
+            <div class="diff-option selected" onclick="setDiff('moderate')" id="diff-moderate">
+              <div class="diff-name">Moderate</div>
+              <div class="diff-desc">4–5 places per day</div>
+            </div>
+
+            <div class="diff-option" onclick="setDiff('intensive')" id="diff-intensive">
+              <div class="diff-name">Intensive</div>
+              <div class="diff-desc">6+ places per day</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- INTERESTS -->
+        <div class="plan-field">
+          <label class="plan-label">What would you like to do?</label>
+
+          <div class="interests-grid">
+
+            <div class="interest-option selected" onclick="toggleInterest('history')" id="int-history">
+              🏛️ Historical
+            </div>
+
+            <div class="interest-option" onclick="toggleInterest('romantic')" id="int-romantic">
+              🌹 Romantic
+            </div>
+
+            <div class="interest-option" onclick="toggleInterest('scenic')" id="int-scenic">
+              🌅 Scenic
+            </div>
+
+            <div class="interest-option" onclick="toggleInterest('food')" id="int-food">
+              🍽️ Food
+            </div>
+
+            <div class="interest-option" onclick="toggleInterest('hidden')" id="int-hidden">
+              💎 Hidden Gems
+            </div>
+
+          </div>
+        </div>
+
+        <button class="plan-generate-btn" onclick="generatePlan()">
+          Build My Trip
+        </button>
+
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="plan-loading" id="plan-loading">
+      <div class="plan-loading-text">Crafting your trip…</div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="plan-result" id="plan-result">
+      <div class="plan-result-header">
+        <div class="plan-result-title">Your Berlin Trip</div>
+      </div>
+      <div id="plan-results"></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
