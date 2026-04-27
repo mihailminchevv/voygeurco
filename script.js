@@ -177,6 +177,13 @@ function goToPlace(lat, lng) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+ 
+  document.getElementById('page-blog')?.classList.add('active');
+
+
   if (typeof cities !== "undefined") {
     initCity("berlin");
   }
