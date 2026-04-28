@@ -201,10 +201,6 @@ function buildPrompt(city) {
   const interests = [...planInterests].join(', ');
 
   return `
-function buildPrompt(city) {
-  const interests = [...planInterests].join(', ');
-
-  return `
 You are an AI itinerary engine.
 
 CITY: ${city}
@@ -212,15 +208,11 @@ DAYS: ${planDays}
 PACE: ${planDiff}
 INTERESTS: ${interests}
 
-OUTPUT RULES (VERY STRICT):
-
+OUTPUT RULES:
 - Output ONLY itinerary
 - No storytelling
-- No sentences like "we will go", "we will visit"
 - No explanations
-- No extra text before or after
-- No hidden gems section unless explicitly in attractions list
-- No nightlife suggestions unless "nightlife" is in interests
+- No extra text
 
 FORMAT:
 
@@ -232,10 +224,9 @@ Day 2:
 
 STYLE:
 - Neutral tone
-- Encyclopedia style (not blog)
 - Max 1 sentence per place
-- No adjectives like "beautiful", "vibrant", "amazing"
-- IMPORTANT:
+
+IMPORTANT:
 Generate EXACTLY ${planDays} days. No more, no less.
 `;
 }
