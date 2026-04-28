@@ -220,6 +220,19 @@ function getCacheKey() {
   return `${currentCity}-${planDays}-${planDiff}-${[...planInterests].sort().join(',')}`;
 }
 
+function showError(msg) {
+  const el = document.getElementById('plan-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+function hideError() {
+  const el = document.getElementById('plan-error');
+  if (!el) return;
+  el.classList.remove('visible');
+}
+
 async function generatePlan() {
   hideError();
 
