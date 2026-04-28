@@ -45,7 +45,6 @@ body {
 }
 
 /* ── PAGES ── */
-.page { display: none; min-height: 100vh; }
 .page.active { display: block; }
 
 /* ── NAV ── */
