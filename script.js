@@ -196,7 +196,22 @@ function goToPlace(lat, lng) {
 /* ─────────────────────────────
    PLAN ENGINE (MULTI-CITY AI)
 ────────────────────────────── */
+function formatAI(text) {
+  const days = text.split(/Day\s+\d+/g).filter(Boolean);
 
+  return days.map((day, i) => {
+    const places = day.trim().split(/\n(?=\d+\.)/g).filter(Boolean);
+
+    return `
+      <div class="ai-day-card">
+        <div class="ai-day-title">Day ${i + 1}</div>
+        <div class="ai-places">
+          ${places.map(p => `<div class="ai-place">${p.replace(/\n/g, '<br>')}</div>`).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
 function buildPrompt(city) {
   const interests = [...planInterests].join(', ');
 
@@ -317,7 +332,7 @@ async function generatePlan() {
     const output = document.getElementById('plan-results');
 
     if (output) {
-      output.innerHTML = (data.result || '').replace(/\n/g, '<br>');
+      output.innerHTML = formatAI(data.result);
       planCache.set(key, output.innerHTML);
     }
 
