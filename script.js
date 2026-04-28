@@ -242,6 +242,7 @@ STYLE:
 IMPORTANT:
 Generate EXACTLY ${planDays} days.
 Each day MUST contain multiple places based on pace.
+Optimize for walking distance between places within each day.
 `;
 }
 
