@@ -284,11 +284,21 @@ Rules:
 `;
 
   try {
-    const response = await fetch('https://zuirhbackend.onrender.com', {
+    const response = await fetch('https://zuirhbackend.onrender.com/api/ai', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
     });
+     const text = await response.text(); // <- важно
+
+let data;
+try {
+  data = JSON.parse(text);
+} catch (e) {
+  console.error("NOT JSON RESPONSE:", text);
+  showError("Server returned invalid response");
+  return;
+}
 
     const data = await response.json();
 
@@ -319,6 +329,7 @@ Rules:
     if (btn) btn.disabled = false;
   }
 }
+
 // Blog page
 function navigate(page) {
   const pages = document.querySelectorAll('.page');
