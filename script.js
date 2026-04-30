@@ -171,6 +171,7 @@ function setCity(cityKey) {
     initMap(city);
   });
 }
+
 /* ─────────────────────────────
    EXPLORE GRID
 ────────────────────────────── */
@@ -186,6 +187,7 @@ function renderExplore(city) {
     </div>
   `).join("");
 }
+
 /* ─────────────────────────────
    MAP
 ────────────────────────────── */
@@ -193,19 +195,16 @@ function renderExplore(city) {
 function initMap(city) {
   const container = document.getElementById("leaflet-map");
 
-  if (!container) {
-    console.warn("Map container not found");
-    return;
-  }
+  // ✅ SAFE GUARD (fix for index.html / non-map pages)
+  if (!container) return;
 
-  // 🔥 CLEAN OLD MAP SAFELY
+  // cleanup old map
   if (leafletMap) {
     leafletMap.remove();
     leafletMap = null;
     mapMarkers = [];
   }
 
-  // 🔥 INIT FRESH MAP
   leafletMap = L.map(container).setView(city.center, city.zoom);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -217,10 +216,16 @@ function initMap(city) {
       .addTo(leafletMap)
       .bindPopup(`<b>${p.name}</b><br>${p.category}`)
   );
-}/* ─────────────────────────────
+
+  // ✅ FIX: list was never guaranteed to exist before call
+  renderMapList(city);
+}
+
+/* ─────────────────────────────
    MAP LIST
 ────────────────────────────── */
- function renderMapList(city) {
+
+function renderMapList(city) {
   const list = document.getElementById("map-list");
   if (!list) return;
 
@@ -233,7 +238,7 @@ function initMap(city) {
 }
 
 /* ─────────────────────────────
-   NAVIGATION (FIXED)
+   NAVIGATION
 ────────────────────────────── */
 
 function navigate(page) {
@@ -272,7 +277,7 @@ function formatAI(text) {
 }
 
 /* ─────────────────────────────
-   PROMPT ENGINE (MULTI-CITY)
+   PROMPT ENGINE
 ────────────────────────────── */
 
 function buildPrompt(city) {
@@ -291,17 +296,22 @@ Return structured itinerary with multiple places per day.
 }
 
 /* ─────────────────────────────
-   INIT PAGE CITY (FIXED)
+   INIT (FIXED - NO data-city DEPENDENCY)
 ────────────────────────────── */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const city = document.body.dataset.city;
+  const container = document.getElementById("leaflet-map");
 
-  if (!city) {
-    console.error("No city defined in body[data-city]");
+  // ✅ ONLY RUN ON CITY PAGES
+  if (!container) return;
+
+  const cityKey = container.dataset.city;
+
+  if (!cityKey || !cities[cityKey]) {
+    console.warn("No valid city found for map page");
     return;
   }
 
-  setCity(city);
+  setCity(cityKey);
 });
 
