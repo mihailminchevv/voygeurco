@@ -218,7 +218,7 @@ function initMap(city) {
       .addTo(leafletMap)
       .bindPopup(`<b>${p.name}</b><br>${p.category}`)
   );
-
+}
  function renderMapList(city) {
   const list = document.getElementById("map-list");
   if (!list) return;
