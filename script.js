@@ -28,7 +28,7 @@ function getCityKey() {
 }
 
 /* ─────────────────────────────
-   CITIES DATA (MULTI-CITY READY)
+   CITIES DATA (UNCHANGED)
 ────────────────────────────── */
 
 const cities = {
@@ -148,6 +148,24 @@ const cities = {
   ]
    }
 };
+
+
+/* ─────────────────────────────
+   CITY SETTER (FIX - WAS MISSING)
+────────────────────────────── */
+
+function setCity(cityKey) {
+  const city = cities[cityKey];
+
+  if (!city) {
+    console.error("City not found:", cityKey);
+    return;
+  }
+
+  renderExplore(city);
+  initMap(city);
+}
+
 /* ─────────────────────────────
    CITY GENERATOR
 ────────────────────────────── */
@@ -189,10 +207,9 @@ function renderExplore(city) {
 function initMap(city) {
   const container = document.getElementById("leaflet-map");
 
-  // ✅ SAFE GUARD (fix for index.html / non-map pages)
-  if (!container) return;
+  // FIX: no map pages or missing container
+  if (!container || !city) return;
 
-  // cleanup old map
   if (leafletMap) {
     leafletMap.remove();
     leafletMap = null;
@@ -211,7 +228,6 @@ function initMap(city) {
       .bindPopup(`<b>${p.name}</b><br>${p.category}`)
   );
 
-  // ✅ FIX: list was never guaranteed to exist before call
   renderMapList(city);
 }
 
@@ -290,15 +306,17 @@ Return structured itinerary with multiple places per day.
 }
 
 /* ─────────────────────────────
-   INIT (FIXED - NO data-city DEPENDENCY)
+   INIT (FIXED - NO CRASH)
 ────────────────────────────── */
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
-  const cityKey = params.get("city");
+  const cityKey = params.get("city") || "berlin";
 
-  if (!cityKey || !cities[cityKey]) {
-    console.error("No valid city found in URL");
+  // FIX: never crash whole app
+  if (!cities[cityKey]) {
+    console.error("No valid city found in URL, fallback to berlin");
+    setCity("berlin");
     return;
   }
 
