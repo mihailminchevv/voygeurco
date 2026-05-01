@@ -838,6 +838,7 @@ nav {
   display: flex;
   height: calc(100vh - 64px);
   margin-top: 0; /* FIX: махаме двойното отместване */
+   overflow: hidden;
 }
 
 #map-container {
@@ -864,7 +865,7 @@ body, html {
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(201,168,76,0.1);
-  overflow: hidden;
+overflow-y: auto;
 }
 
 .map-sidebar-header {
