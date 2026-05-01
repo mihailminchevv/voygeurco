@@ -20,11 +20,11 @@
   </div>
 
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="map.html">Map</a></li>
-    <li><a href="blog.html">Blog</a></li>
+   <a href="index.html">
+<a href="map.html?city=berlin">Map</a>
+      <a href="blog.html?city=berlin">Blog</a>
     <li>
-      <a href="create.html" class="active"
+<a href="create.html?city=berlin"
          style="color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 5px 14px; border-radius: 100px;">
         Create my trip
       </a>
@@ -42,37 +42,27 @@
       Tell us when you're visiting and what you love — we'll build your personal Berlin trip.
     </p>
   </div>
-
  
   <div class="plan-layout">
-
     <div class="plan-error" id="plan-error"></div>
-
-  
     <div class="plan-form-card">
-
       <div class="plan-form-header">
         <div class="plan-form-icon">
           <svg viewBox="0 0 24 24">
             <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
           </svg>
         </div>
-
         <div>
           <div class="plan-form-title">AI Travel Planner</div>
           <div class="plan-form-sub">Your personal itinerary for Berlin, Germany</div>
         </div>
       </div>
-
       <div class="plan-form-body">
-
-  
         <div class="plan-field">
           <label class="plan-label">
             Number of days
             <span id="days-display">2 days</span>
           </label>
-
           <div class="days-slider-wrap">
             <input type="range" class="days-slider" id="days-slider"
               min="1" max="7" value="2"
