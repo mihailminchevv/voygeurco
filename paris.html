@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-city="paris">
+<body>
 <!-- ── NAV ── -->
 <nav id="main-nav">
   <div class="nav-brand" onclick="window.location.href='index.html'">
@@ -18,10 +18,10 @@
   </div>
 
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="map.html">Map</a></li>
-    <li><a href="blog.html">Blog</a></li>
-      <a href="create.html"
+    <a href="index.html?city=main">
+   <a href="map.html?city=paris">
+     <a href="blog.html?city=paris">
+     <a href="blog.html?city=paris"
          style="color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 5px 14px; border-radius: 100px;">
         Create my trip
       </a>
@@ -161,5 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+     </a>
+   </a>
+    </a>
+  </ul>
+</nav>
 </body>
 </html>
