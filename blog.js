@@ -124,7 +124,7 @@ const CITY_BLOGS = {
 <p>It is not a city you simply visit. It is a city you experience.</p>`
   },
 ],
-
+};
  paris: {
     name: "Paris",
     posts: [
@@ -243,7 +243,7 @@ const CITY_BLOGS = {
 
 <p>To explore Paris like a local is to let go of structure and follow the city itself.</p>`
   }
-];
+    };
 /* ── BLOG ── */
 function loadBlog() {
   const grid = document.getElementById('blog-grid');
