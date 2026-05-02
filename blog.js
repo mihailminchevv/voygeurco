@@ -122,7 +122,8 @@ const CITY_BLOGS = {
 <p>Ultimately, Berlin is defined by its contrasts—history and modernity, structure and freedom, intensity and calm.</p>
 
 <p>It is not a city you simply visit. It is a city you experience.</p>`
-    ]
+     ]
+    }
   },
       
  paris: {
@@ -242,8 +243,9 @@ const CITY_BLOGS = {
 <p>Ultimately, the real Paris is not a checklist of attractions. It is a collection of moments, atmospheres, and experiences that come together naturally.</p>
 
 <p>To explore Paris like a local is to let go of structure and follow the city itself.</p>`
-    ]
-  }
+     ]
+   }
+ }
 };
 /* ── BLOG ── */
 function loadBlog() {
