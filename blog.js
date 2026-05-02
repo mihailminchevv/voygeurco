@@ -122,9 +122,8 @@ const CITY_BLOGS = {
 <p>Ultimately, Berlin is defined by its contrasts—history and modernity, structure and freedom, intensity and calm.</p>
 
 <p>It is not a city you simply visit. It is a city you experience.</p>`
-     ]
-    }
-  },
+      ]
+    },
       
  paris: {
     name: "Paris",
