@@ -184,8 +184,8 @@ const cities = {
 ────────────────────────────── */
 
 const Blog_Data = {
-  berlin: Berlin_Posts,   // вече ги имаш
-  paris: Paris_Posts      // новите които ще добавим
+  berlin: typeof Berlin_Posts !== "undefined" ? Berlin_Posts : [],
+  paris: typeof Paris_Posts !== "undefined" ? Paris_Posts : []
 };
 
 function getCityFromURLSafe() {
