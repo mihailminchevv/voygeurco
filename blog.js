@@ -244,8 +244,7 @@ const CITY_BLOGS = {
 
 <p>To explore Paris like a local is to let go of structure and follow the city itself.</p>`
      ]
-   }
- }
+   },
 };
 /* ── BLOG ── */
 function loadBlog() {
