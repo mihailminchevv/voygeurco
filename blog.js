@@ -297,3 +297,4 @@ function openBlogPost(id) {
 
   window.scrollTo(0, 0);
 }
+document.addEventListener("DOMContentLoaded", loadBlog);
