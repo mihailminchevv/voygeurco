@@ -43,7 +43,38 @@ body {
 .logo-sans {
   font-family: var(--sans);
 }
+<!--Waitlist-->
+.waitlist {
+  background: #0d1b2a;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
 
+.waitlist h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+}
+
+.waitlist p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.waitlist input {
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  width: 260px;
+}
+
+.waitlist button {
+  padding: 12px 18px;
+  background: #c9a84c;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
 /* ── PAGES ── */
 .page.active { display: block; }
 
