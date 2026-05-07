@@ -1,3 +1,8 @@
+/*Waitlist*/
+const supabaseUrl = "https://oqdgfahdtwsoiczrudle.supabase.co/Northline-waitlist";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xZGdmYWhkdHdzb2ljenJ1ZGxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNjc1OTksImV4cCI6MjA5Mzc0MzU5OX0.U6rbNATdC0ZFWSe5IOzvqY8KYMndutQwLxlg78dcL3o";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 /* ─────────────────────────────
    GLOBAL STATE (MULTI-CITY ENGINE)
 ────────────────────────────── */
