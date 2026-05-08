@@ -11,18 +11,27 @@
 </head>
 <body>
 <!-- ── WAITLIST ── -->
-  <section class="waitlist">
-  <h2>Join Northline Waitlist</h2>
-  <p>Get early access</p>
+ <div class="card">
 
-  <form id="waitlist-form">
-    <input type="email" id="email" placeholder="Enter your email" required />
-    <button type="submit">Join</button>
-  </form>
+  <div class="badge">COMING SOON</div>
 
-  <p id="msg"></p>
-</section>
-<!-- ── NAV ── 
+  <h1>Join the Waitlist</h1>
+
+  <p>
+    Get early access to the platform before launch.
+    Be the first to try new features.
+  </p>
+
+  <input class="input" type="text" placeholder="Your name" />
+  <input class="input" type="email" placeholder="Email address" />
+
+  <button>Join Waitlist</button>
+
+  <div class="success">✔ You’ve been added to the waitlist</div>
+  <div class="error">✖ Please enter valid information</div>
+
+</div>
+<!-- ── NAV ── -->
 <nav id="main-nav">
   <div class="nav-brand" onclick="window.location.href='index.html'">
     <div class="nav-brand-icon">
@@ -30,9 +39,9 @@
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
       </svg>
     </div>
-    <span class="nav-brand-text">Maison <span> Lumière</span></span>
+    <span class="nav-brand-text">Northline</span></span>
   </div>
-  <ul class="nav-links">
+<!--  <ul class="nav-links">
    <a href="index.html?">Home</a>
  <a href="berlin.html?city=berlin">Berlin</a>
 <a href="paris.html?city=paris">Paris</a>
